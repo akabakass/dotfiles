@@ -36,6 +36,7 @@ gitsigns.setup({
     map('n', 'gp', gs.preview_hunk, {desc = "show hunk preview"})
     map('n', '<leader>ha', gs.stage_hunk, {desc = "add hunk"})
     map('n', '<leader>hr', gs.reset_hunk, {desc = "reset hunk"})
+    map('n', '<leader>hu', gs.undo_stage_hunk, {desc = "undo stage hunk"})
     map('v', '<leader>ha', function() gs.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end, {desc = "add hunk"})
     map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end, {desc = "reset hunk"})
   end
