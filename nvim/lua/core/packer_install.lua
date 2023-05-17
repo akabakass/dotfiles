@@ -92,6 +92,9 @@ return packer.startup({
     -- autopairs
     use "windwp/nvim-autopairs"
 
+    -- git management
+    use "lewis6991/gitsigns.nvim"
+
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
