@@ -51,8 +51,6 @@ vim.opt.breakindentopt = {shift = 4, sbr}
 vim.opt.showbreak = ">>>>"
 -- show more lines in the command-line window
 vim.opt.cmdwinheight = 15
--- ask to save when trying to quit or edit another file while the current one is not saved yet
-vim.opt.confirm = true
 -- show a line under active row
 vim.opt.cursorline = true
 -- Highlight the column of the cursor    
@@ -110,7 +108,9 @@ vim.opt.virtualedit = "block"
 -- I set it for first two consecutives presses
 -- longest:full = expand to the longest common parts of the word, opening the popup menu
 -- then full = scroll on the menu
-vim.opt.wildmode = "longest:full,full"
+vim.opt.wildmode = "longest:list,full"
+-- activate wildmode menu
+vim.opt.wildmenu = true
 -- set pseudo-transparency for floating windows
 vim.opt.winblend=10
 -- no need to show things likd -- INSERT --
