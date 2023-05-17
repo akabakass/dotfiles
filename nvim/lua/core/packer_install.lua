@@ -45,6 +45,10 @@ return packer.startup({
       tag = '0.1.1',
       requires = { {'nvim-lua/plenary.nvim'} }
     })
+    -- add packer functionality to telescope
+    use "nvim-telescope/telescope-packer.nvim"
+    -- add git repo list to telescope
+    use "cljoly/telescope-repo.nvim"
     
     -- Completiion stuff
     -- this need double check

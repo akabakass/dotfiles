@@ -45,9 +45,16 @@ key("n", "<C-f>", ":NvimTreeFindFileToggle<CR>", opts())
 -- # telescope #
 -- #############
 
-local telescope_b = require("telescope.builtin")
-key("n", "<leader>ff", telescope_b.find_files, opts("[F]ind [F]iles"))
-key("n", "<leader>gl", telescope_b.live_grep, opts("[G]rep [L]ive"))
-key("n", "<leader>fh", telescope_b.help_tags, opts("[F]ind [H]elp"))
-key("n", "<leader>fb", telescope_b.buffers, opts("[F]ind [B]uffer"))
+local telescope_status, telescope_b = pcall(require, "telescope.builtin")
+if telescope_status then
+  key("n", "<leader>ff", telescope_b.find_files, opts("[F]ind [F]iles"))
+  key("n", "<leader>gl", telescope_b.live_grep, opts("[G]rep [L]ive"))
+  key("n", "<leader>fh", telescope_b.help_tags, opts("[F]ind [H]elp"))
+  key("n", "<leader>fb", telescope_b.buffers, opts("[F]ind [B]uffer"))
+end
+
+
+-- ############
+-- # cellular #
+-- ############
 
