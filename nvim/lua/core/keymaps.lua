@@ -58,3 +58,5 @@ end
 -- # cellular #
 -- ############
 
+key("n", "<leader>fuc", "<cmd>CellularAutomaton make_it_rain<CR>", opts('make it rain'))
+key("n", "<leader>fuk", "<cmd>CellularAutomaton game_of_life<CR>", opts('game of life'))

@@ -97,6 +97,8 @@ return packer.startup({
     -- git management
     use "lewis6991/gitsigns.nvim"
 
+    -- when your sick of it
+    use 'Eandrju/cellular-automaton.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
