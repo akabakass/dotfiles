@@ -116,6 +116,8 @@ cmp.setup({
         luasnip_choice = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        cmdline = "[Cmdline]",
+        cmdline_history = "[Cmdline_History]"
       })[entry.source.name]
       return vim_item
     end
@@ -137,20 +139,13 @@ cmp.setup.cmdline({ '/', '?' }, {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'cmdline_history' },
+  sources = {
     { name = 'cmdline' },
-    { name = 'path' }
-  })
+    { name = 'path' },
+  }
 })
 
 local neodev_status, neodev = pcall(require, "neodev")
 if neodev_status then
   neodev.setup({ })
 end
--- Set up lspconfig.
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
--- capabilities = capabilities
--- }

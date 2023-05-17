@@ -64,7 +64,6 @@ return packer.startup({
 --      "dmitmel/cmp-vim-lsp",
 --      require = "prabirshrestha/vim-lsp"
 --    }
-    use "dmitmel/cmp-cmdline-history"
     use "hrsh7th/cmp-nvim-lua"
 
     -- Snippet completion
