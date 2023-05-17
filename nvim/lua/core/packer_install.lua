@@ -96,6 +96,7 @@ return packer.startup({
 
     -- git management
     use "lewis6991/gitsigns.nvim"
+    use "doronbehar/nvim-fugitive"
 
     -- when your sick of it
     use 'Eandrju/cellular-automaton.nvim'
