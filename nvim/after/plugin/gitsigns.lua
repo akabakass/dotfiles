@@ -12,10 +12,10 @@ gitsigns.setup({
     changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
   },
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-  numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+  numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  current_line_blame = true,
+  current_line_blame = false,
     current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
