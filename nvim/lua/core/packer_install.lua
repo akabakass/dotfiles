@@ -26,10 +26,6 @@ return packer.startup({
     -- startup screen
     use ({
       'glepnir/dashboard-nvim',
-      event = 'VimEnter',
-      options = {
-        theme = "doom"
-      },
       requires = {'nvim-tree/nvim-web-devicons'}
     })
 
