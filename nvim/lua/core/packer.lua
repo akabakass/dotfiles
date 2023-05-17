@@ -10,7 +10,7 @@ local ensure_packer = function()
   return false
 end
 
-local packer_bootstrap = ensure_packer()
+Packer_bootstrap = ensure_packer()
 
 -- auto source and resync when packer_install.lua is saved
 vim.api.nvim_create_autocmd('BufWritePost', {

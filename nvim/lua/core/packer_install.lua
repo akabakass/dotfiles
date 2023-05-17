@@ -91,6 +91,9 @@ return packer.startup({
     -- autopairs
     use "windwp/nvim-autopairs"
 
+    -- comment
+    use "numToStr/Comment.nvim"
+
     -- git management
     use "lewis6991/gitsigns.nvim"
 
