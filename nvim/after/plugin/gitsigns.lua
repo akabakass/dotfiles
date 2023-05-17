@@ -38,4 +38,5 @@ gitsigns.setup({
     map('n', '<leader>hr', gs.reset_hunk, {desc = "reset hunk"})
     map('v', '<leader>ha', function() gs.stage_hunk {vim.fn.line("."), vim.fn.line("v")} end, {desc = "add hunk"})
     map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line("."), vim.fn.line("v")} end, {desc = "reset hunk"})
+  end
 })
