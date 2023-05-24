@@ -39,6 +39,9 @@ return packer.startup({
     -- a nice filetree explorer
     use ('nvim-tree/nvim-tree.lua')
 
+    -- a project manager
+    use "ahmedkhalf/project.nvim"
+
     -- fuzzy finder
     use ({
       'nvim-telescope/telescope.nvim',

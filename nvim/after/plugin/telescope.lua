@@ -8,6 +8,8 @@ if not actions_status then
   return
 end
 
+require("telescope").load_extension "projects"
+
 telescope.setup({
   defaults = {
     mappings = {
@@ -26,3 +28,13 @@ telescope.setup({
     sorting_strategy = "ascending"
   }
 })
+
+
+key = vim.keymap.set
+
+local opts = function(desc)
+  return {noremap = true, silent = true, desc = desc}
+end
+
+key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", opts("[F]ind [P]roject"))
+
