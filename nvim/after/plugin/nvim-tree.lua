@@ -25,7 +25,7 @@ tree.setup({
   view = {
     adaptive_size = true,
     float = {
-      enable = true,
+      enable = false, -- enable that and uncomment width to get it as floating
       open_win_config = function()
         local screen_w = vim.opt.columns:get()
         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -46,9 +46,9 @@ tree.setup({
         }
         end
     },
-    width = function()
-      return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-    end,
+    -- width = function()
+    --   return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+    -- end,
   },
   renderer = {
     group_empty = true,
