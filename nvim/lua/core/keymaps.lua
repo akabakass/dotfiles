@@ -49,6 +49,7 @@ local telescope_b_status, telescope_b = pcall(require, "telescope.builtin")
 if telescope_b_status then
   key("n", "<leader>ff", telescope_b.find_files, opts("[F]ind [F]iles"))
   key("n", "<leader>gl", telescope_b.live_grep, opts("[G]rep [L]ive"))
+  key("n", "<leader>gs", telescope_b.grep_string, opts("[G]rep [S]tring"))
   key("n", "<leader>fh", telescope_b.help_tags, opts("[F]ind [H]elp"))
   key("n", "<leader>fb", telescope_b.buffers, opts("[F]ind [B]uffer"))
 end
@@ -59,3 +60,9 @@ end
 
 key("n", "<leader>fuc", "<cmd>CellularAutomaton make_it_rain<CR>", opts('make it rain'))
 key("n", "<leader>fuk", "<cmd>CellularAutomaton game_of_life<CR>", opts('game of life'))
+
+-- ############
+-- # fugitive #
+-- ############
+
+key('n', '<leader>gS', '<cmd>Gstatus<CR>', opts('[G]it [S]tatus'))
