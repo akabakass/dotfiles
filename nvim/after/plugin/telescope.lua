@@ -25,7 +25,10 @@ telescope.setup({
     layout_config = {
       prompt_position = "top"
     },
-    sorting_strategy = "ascending"
+    sorting_strategy = "ascending",
+    file_ignore_patterns = {
+      ".git/"
+    }
   }
 })
 
