@@ -80,6 +80,7 @@ return packer.startup({
         opts = {} -- same as calling resuire('fidget').setup({})
       }
     }
+    use 'WhoIsSethDaniel/mason-tool-installer.nvim'
 
     -- lsp kind for neovim config
     use "folke/neodev.nvim"

@@ -15,11 +15,12 @@ if not mason_lsp_status then
   return
 end
 
-mason_lsp.setup()
-
-local lsp_status, lsp = pcall(require, "lspconfig")
-if not lsp_status then
-  return
+local mason_tools_status, mason_tools = pcall(require, "mason-tool-installer")
+if mason_tools_status then
+  mason_tools.setup({
+    auto_update = true,
+    run_on_start = true
+  })
 end
 
 local servers = {
