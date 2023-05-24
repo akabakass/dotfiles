@@ -97,6 +97,7 @@ return packer.startup({
 
     -- comment
     use "numToStr/Comment.nvim"
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- git management
     use "lewis6991/gitsigns.nvim"

@@ -48,3 +48,19 @@ treesitter.setup({
   }
 })
 
+local treesitter_config_status, treesitter_config = pcall(require, "nvim-treesitter.configs")
+if not treesitter_config_status then
+  return
+end
+
+treesitter_config.setup({
+  ensure_installed = {
+    'css', 'html', 'javascript',
+    'lua', 'php', 'python', 'scss',
+    'typescript', 'vim'
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false
+  }
+})
