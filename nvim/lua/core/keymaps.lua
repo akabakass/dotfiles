@@ -65,4 +65,4 @@ key("n", "<leader>fuk", "<cmd>CellularAutomaton game_of_life<CR>", opts('game of
 -- # fugitive #
 -- ############
 
-key('n', '<leader>gS', '<cmd>Gstatus<CR>', opts('[G]it [S]tatus'))
+key('n', '<leader>gg', '<cmd>Git<CR>', opts('[G]it [S]tatus'))
