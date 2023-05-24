@@ -18,7 +18,12 @@ return packer.startup({
         run = ":TSUpdate"
       }
     }
-    use "HiPhish/nvim-ts-rainbow2"
+    use {
+      "HiPhish/nvim-ts-rainbow2",
+      requires = {
+        "nvim-treesitter/nvim-treesitter"
+      }
+    }
 
     -- color scheme
     use ("EdenEast/nightfox.nvim")
@@ -97,7 +102,12 @@ return packer.startup({
 
     -- comment
     use "numToStr/Comment.nvim"
-    use "JoosepAlviste/nvim-ts-context-commentstring"
+    use {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      requires = {
+        "nvim-treesitter/nvim-treesitter"
+      }
+    }
 
     -- git management
     use "lewis6991/gitsigns.nvim"
