@@ -59,7 +59,10 @@ tree.setup({
       enable = true
     },
     icons = {
-      git_placement = "signcolumn",
+      git_placement = "before",
+      show = {
+        git = true
+      }
     }
   }
   
