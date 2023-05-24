@@ -9,6 +9,12 @@ local WIDTH_RATIO = 0.5  -- You can change this too
 tree.setup({
   disable_netrw = true,
   hijack_cursor = true,
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = true
+  },
   git = {
     -- need renderer.ions.show.git = true whereever it is
     enable = true
