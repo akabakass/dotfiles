@@ -26,7 +26,7 @@ local custom_center = {
     icon = '🔍   ',
     desc = 'Find file in ' .. vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
     action = function()
-      builtin.find_files({
+      require('telescope.builtin').find_files({
         cwd = vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
         prompt_title = '🌞 ' .. vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
         hidden = true
@@ -37,7 +37,7 @@ local custom_center = {
     icon = '💻   ',
     desc = 'Tubs dev',
     action = function()
-      builtin.find_files({
+      require('telescope.builtin').find_files({
         cwd = '/var/www/tubs',
         prompt_title = '💻 Tubs',
         hidden = true
@@ -49,7 +49,7 @@ local custom_center = {
     desc = 'Dotfiles         ',
     action = function()
       if pcall(function()
-        builtin.git_files(
+        require('telescope').builtin.git_files(
           themes.get_dropdown {
             cwd = '~/dotfiles',
             prompt_title = ' Dotfiles',
@@ -59,7 +59,7 @@ local custom_center = {
         )
       end) then
       else
-        builtin.find_files(
+        require('telescope').builtin.find_files(
           themes.get_dropdown {
             prompt_title = ' Dotfiles',
             cwd = '~/dotfiles',
