@@ -25,6 +25,7 @@ local custom_center = {
   {
     icon = '🔍   ',
     desc = 'Find file in ' .. vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
+    key = 'f',
     action = function()
       require('telescope.builtin').find_files({
         cwd = vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
@@ -36,6 +37,7 @@ local custom_center = {
   {
     icon = '💻   ',
     desc = 'Tubs dev',
+    key = 't',
     action = function()
       require('telescope.builtin').find_files({
         cwd = '/var/www/tubs',
@@ -47,9 +49,10 @@ local custom_center = {
   {
     icon = '🔅   ',
     desc = 'Dotfiles         ',
+    key = 'd',
     action = function()
       if pcall(function()
-        require('telescope').builtin.git_files(
+        require('telescope.builtin').git_files(
           themes.get_dropdown {
             cwd = '~/dotfiles',
             prompt_title = ' Dotfiles',
@@ -59,7 +62,7 @@ local custom_center = {
         )
       end) then
       else
-        require('telescope').builtin.find_files(
+        require('telescope.builtin').find_files(
           themes.get_dropdown {
             prompt_title = ' Dotfiles',
             cwd = '~/dotfiles',
@@ -73,6 +76,7 @@ local custom_center = {
     {
     icon = '🌵   ',
     desc = 'Git repos        ',
+    key = 'g',
     action = function ()
       telescope.extensions.repo.list(
           themes.get_dropdown({
@@ -85,6 +89,7 @@ local custom_center = {
   {
     icon = '🔌   ',
     desc = 'Plugins         ',
+    key = 'p',
     action = function()
       telescope.extensions.packer.packer({
         
@@ -96,11 +101,13 @@ local custom_center = {
   {
     icon = '📝   ',
     desc = 'New file        ',
-    action = '<cmd>:enew<CR>'
+    key = 'n',
+    action = '<cmd>ene!<CR>'
   },
   {
     icon = '🔑   ',
     desc = 'Key maps        ',
+    key = 'k',
     action = function()
       builtin.keymaps(
         themes.get_ivy({
@@ -112,6 +119,7 @@ local custom_center = {
   {
     icon = '❓   ',
     desc = 'Help             ',
+    key = 'h',
     action = function()
       builtin.help_tags(
         themes.get_dropdown({
