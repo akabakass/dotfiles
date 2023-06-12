@@ -8,6 +8,9 @@ return packer.startup({
     -- packer handle itself
     use ('wbthomason/packer.nvim')
 
+    -- jump back to last place when opening a file
+    use 'ethanholz/nvim-lastplace'
+
     --install pretty icons
     use ('nvim-tree/nvim-web-devicons')
 
