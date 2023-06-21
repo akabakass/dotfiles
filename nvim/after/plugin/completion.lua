@@ -49,6 +49,7 @@ local kind_icons = {
 luasnip_choice.setup({ })
 
 cmp.setup({
+  
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -97,13 +98,17 @@ cmp.setup({
         "s",
       })
   },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = "vim_lsp"},
+  sources = cmp.config.sources({
     { name = 'luasnip_choice' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp' },
+    { name = 'rg' },
+    { name = "vim_lsp"},
     { name = 'buffer' }
   },
+  {
+    { name = 'buffer'}
+  }),
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -112,6 +117,7 @@ cmp.setup({
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
+        rg = "[RG]",
         luasnip = "[Snippet]",
         luasnip_choice = "[Snippet]",
         buffer = "[Buffer]",
@@ -145,7 +151,9 @@ cmp.setup.cmdline(':', {
   }
 })
 
-local neodev_status, neodev = pcall(require, "neodev")
-if neodev_status then
-  neodev.setup({ })
-end
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+

@@ -13,6 +13,8 @@ vim.g.maplocalleader = " "
 -- # NORMAL MODE #
 -- ###############
 
+key('n', '<C-n>', ":Dashboard<CR>", opts("launch dashboard"))
+
 -- allow to navigate better between windows
 key('n', "<C-h>", "<C-w>h", opts("move to lefter window"))
 key('n', "<C-j>", "<C-w>j", opts("move to lower window"))
@@ -24,6 +26,7 @@ key('n', "<C-Up>", ":resize -2<CR>", opts())
 key('n', "<C-Down>", ":resize +2<CR>", opts())
 key('n', "<C-Left>", ":vertical resize -2<CR>", opts())
 key('n', "<C-Right>", ":vertical resize +2<CR>", opts())
+
 
 
 -- ###############
@@ -66,3 +69,44 @@ key("n", "<leader>fuk", "<cmd>CellularAutomaton game_of_life<CR>", opts('game of
 -- ############
 
 key('n', '<leader>gg', '<cmd>Git<CR>', opts('[G]it [S]tatus'))
+
+-- ##############
+-- # treehopper #
+-- ##############
+
+key('o', 'm', ":<C-U>lua require('tsht').nodes()<CR>", {silent = true, desc = "treehopper"})
+key('x', 'm', ":lua require('tsht').nodes()<CR>", opts("treehopper"))
+
+-- #######
+-- # DAP #
+-- #######
+
+key('n', '<F5>', function() require('dap').continue() end, opts("Start debbuging"))
+key('n', '<F6>', function() 
+  require('dap').close() 
+  require('dapui').close()
+end, opts("Stop debugging"))
+key('n', '<F2>', function() require('dap').step_over() end, opts("Step over"))
+key('n', '<F3>', function() require('dap').step_into() end, opts("Step into"))
+key('n', '<F4>', function() require('dap').step_out() end, opts("Step out"))
+key('n', '<Leader>b', function() require('dap').toggle_breakpoint() end, opts("Toggle breakpoint"))
+key('n', '<Leader>B', function() require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition : '), nil, nil) end, opts("Set conditional breakpoint"))
+key('n', '<Leader>lb', function() require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, opts("Set log breakpoint"))
+key('n', '<Leader>dr', function() require('dap').repl.open() end, opts("open repl"))
+key('n', '<Leader>dl', function() require('dap').run_last() end, opts("run last"))
+key({'n', 'v'}, '<Leader>dh', function()
+  require('dap.ui.widgets').hover()
+end, opts("show hover info"))
+key({'n', 'v'}, '<Leader>dp', function()
+  require('dap.ui.widgets').preview()
+end, opts("show preview info"))
+key('n', '<Leader>df', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.frames)
+end, opts("show frames"))
+key('n', '<Leader>ds', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+end, opts("show scopes"))
+key('n', '<leader>de', function() require('dapui').eval() end, opts('eval code'))
+key('n', '<leader>dE', function() require('dapui').eval(vim.fn.input('[DAP] expression >')) end, opts('eval code'))

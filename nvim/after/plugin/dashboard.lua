@@ -20,8 +20,21 @@ end
 
 require("telescope").load_extension "packer"
 require("telescope").load_extension "repo"
+require('telescope').load_extension 'dap'
 
 local custom_center = {
+  {
+    icon = "🖥️   ",
+    desc = "select project",
+    key = "p",
+    action = function()
+      require('telescope').extensions.projects.projects(
+        require('telescope.themes').get_dropdown({
+          hidden = true
+        })
+      )
+    end
+  },
   {
     icon = '🔍   ',
     desc = 'Find file in ' .. vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
@@ -53,7 +66,7 @@ local custom_center = {
     action = function()
       if pcall(function()
         require('telescope.builtin').git_files(
-          themes.get_dropdown {
+          require('telescope.themes').get_dropdown {
             cwd = '~/dotfiles',
             prompt_title = ' Dotfiles',
             hidden = true,
@@ -63,7 +76,7 @@ local custom_center = {
       end) then
       else
         require('telescope.builtin').find_files(
-          themes.get_dropdown {
+          require('telescope.themes').get_dropdown {
             prompt_title = ' Dotfiles',
             cwd = '~/dotfiles',
             previewer = false,
@@ -78,8 +91,8 @@ local custom_center = {
     desc = 'Git repos        ',
     key = 'g',
     action = function ()
-      telescope.extensions.repo.list(
-          themes.get_dropdown({
+      require('telescope').extensions.repo.list(
+          require('telescope.themes').get_dropdown({
             prompt_title = '🌵 Git repos',
             previewer = false
         })
@@ -89,7 +102,7 @@ local custom_center = {
   {
     icon = '🔌   ',
     desc = 'Plugins         ',
-    key = 'p',
+    key = '<C-p>',
     action = function()
       telescope.extensions.packer.packer({
         
@@ -102,12 +115,12 @@ local custom_center = {
     icon = '📝   ',
     desc = 'New file        ',
     key = 'n',
-    action = '<cmd>ene!<CR>'
+    action = 'enew'
   },
   {
     icon = '🔑   ',
     desc = 'Key maps        ',
-    key = 'k',
+    key = 'm',
     action = function()
       builtin.keymaps(
         themes.get_ivy({

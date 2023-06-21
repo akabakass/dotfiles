@@ -14,12 +14,13 @@ return packer.startup({
     --install pretty icons
     use ('nvim-tree/nvim-web-devicons')
 
-    -- improve syntax highlighting
+    -- improve syntax highlighting, and navigation
     use {
       "nvim-treesitter/nvim-treesitter",
-      {
-        run = ":TSUpdate"
-      }
+      run = function()
+              local ts_update = require('nvim-treesitter.install').update({with_sync = true})
+              ts_update()
+            end
     }
     use {
       "HiPhish/nvim-ts-rainbow2",
@@ -27,7 +28,27 @@ return packer.startup({
         "nvim-treesitter/nvim-treesitter"
       }
     }
-
+    use {
+      "nvim-treesitter/nvim-treesitter-context",
+      requires = {
+        "nvim-treesitter/nvim-treesitter"
+      }
+    }
+    use {
+      "theHamsta/nvim-treesitter-pairs",
+      requires = {
+        "nvim-treesitter/nvim-treesitter"
+      }
+    }
+    use 'nvim-treesitter/playground'
+    use 'mfussenegger/nvim-treehopper'
+    use {
+      'andymass/vim-matchup',
+      setup = function()
+        -- may set any options here
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end
+    }
     -- color scheme
     use ("EdenEast/nightfox.nvim")
 
@@ -62,15 +83,15 @@ return packer.startup({
     use "cljoly/telescope-repo.nvim"
     
     -- Completiion stuff
-    -- this need double check
     use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
     use "hrsh7th/cmp-nvim-lsp-document-symbol"
     use "hrsh7th/cmp-nvim-lsp-signature-help"
+    use "lukas-reineke/cmp-rg"
 --    use {
 --      "dmitmel/cmp-vim-lsp",
 --      require = "prabirshrestha/vim-lsp"
@@ -84,7 +105,10 @@ return packer.startup({
 
     -- LSP management
     use {
-      "williamboman/mason.nvim",
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate"
+      },
       "williamboman/mason-lspconfig.nvim",
       {
         "j-hui/fidget.nvim",
@@ -92,6 +116,19 @@ return packer.startup({
       }
     }
     use 'WhoIsSethDaniel/mason-tool-installer.nvim'
+
+    -- debugging tool
+    use 'mfussenegger/nvim-dap'
+    use { 
+      "rcarriga/nvim-dap-ui",
+      requires = {
+        "mfussenegger/nvim-dap"
+      } 
+    }
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'nvim-telescope/telescope-dap.nvim'
+    use 'LiadOz/nvim-dap-repl-highlights'
+    use 'rcarriga/cmp-dap'
 
     -- lsp kind for neovim config
     use "folke/neodev.nvim"
@@ -111,6 +148,7 @@ return packer.startup({
         "nvim-treesitter/nvim-treesitter"
       }
     }
+
 
     -- git management
     use "lewis6991/gitsigns.nvim"

@@ -6,13 +6,33 @@ if mason_status then
       border = "rounded"
     }
   })
-  return
 end
 
+local neodev_status, neodev = pcall(require, "neodev")
+if neodev_status then
+  neodev.setup({
+    library = { 
+      plugins = { 
+        "nvim-dap-ui" 
+      }, 
+      types = true 
+    }
+  })
+end
 
 local mason_lsp_status, mason_lsp = pcall(require, "mason-lspconfig")
 if mason_lsp_status then
   mason_lsp.setup()
+  mason_lsp.setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function (server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup ({
+              root_dir = function() return vim.loop.cwd() end
+            })
+        end,
+    }
 end
 
 local mason_tools_status, mason_tools = pcall(require, "mason-tool-installer")
@@ -21,28 +41,5 @@ if mason_tools_status then
     auto_update = true,
     run_on_start = true
   })
-end
-
-local lsp_status, lsp = pcall(require, "lspconfig")
-if lsp_status then
-  local servers = {
-    "lua_ls",
-    "cssls",
-    "html",
-    "tsserver",
-    "sqlls",
-    "pyright",
-    "bashls",
-    "jsonls",
-    "yamlls",
-    "intelephense"
-  }
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-  for _, server in ipairs(servers) do
-    lsp[server].setup {
-      capabilities = capabilities
-    }
-  end
 end
 
