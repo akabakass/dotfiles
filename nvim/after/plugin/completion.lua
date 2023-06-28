@@ -49,7 +49,14 @@ local kind_icons = {
 luasnip_choice.setup({ })
 
 cmp.setup({
-  
+  completion = {
+    autocomplete = {
+      cmp.TriggerEvent.TextChanged,
+      cmp.TriggerEvent.InsertEnter
+    },
+    completeopt = "menuone,noinsert,noselect",
+    keyword_length = 0
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -68,7 +75,10 @@ cmp.setup({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close()
     },
-    ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = true })),
+    ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ 
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true 
+    })),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()

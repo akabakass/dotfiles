@@ -9,17 +9,17 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- set indentation to 2 spaces
 -- length of actual \t character
 vim.opt.tabstop = 2
--- length to use when editing text (0 = use tabstop value)
-vim.opt.softtabstop = 0
--- length to use when shifting text with << or >> (0 = use tabstop value)
-vim.opt.shiftwidth = 0
--- don't expand right amount of spaces into tab
+-- -- length to use when editing text (0 = use tabstop value)
+vim.opt.softtabstop = 2
+-- -- length to use when shifting text with << or >> (0 = use tabstop value)
+vim.opt.shiftwidth = 2
+-- -- don't expand right amount of spaces into tab
 vim.opt.expandtab = true
--- reproduce indentation of previous line
-vim.opt.autoindent = true
--- try to be smart (increase indenting level after { for exemple)
-vim.opt.smartindent = true
--- show line number 
+-- -- reproduce indentation of previous line
+-- vim.opt.autoindent = true
+-- -- try to be smart (increase indenting level after { for exemple)
+-- vim.opt.smartindent = true
+-- -- show line number 
 vim.opt.number = true
 -- show relative line number 
 vim.opt.relativenumber = true
