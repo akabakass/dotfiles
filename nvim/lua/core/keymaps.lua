@@ -55,8 +55,9 @@ if telescope_b_status then
   key("n", "<leader>gs", telescope_b.grep_string, opts("[G]rep [S]tring"))
   key("n", "<leader>fh", telescope_b.help_tags, opts("[F]ind [H]elp"))
   key("n", "<leader>fb", telescope_b.buffers, opts("[F]ind [B]uffer"))
+  key("n", "<leader>fs", telescope_b.lsp_document_symbols, opts("[F]ind [S]ymbols"))
 end
-
+key("n", "<leader>u", "<cmd>Telescope undo<CR>")
 -- ############
 -- # cellular #
 -- ############
@@ -110,3 +111,10 @@ key('n', '<Leader>ds', function()
 end, opts("show scopes"))
 key('n', '<leader>de', function() require('dapui').eval() end, opts('eval code'))
 key('n', '<leader>dE', function() require('dapui').eval(vim.fn.input('[DAP] expression >')) end, opts('eval code'))
+
+-- ############
+-- # Undotree #
+-- ############
+
+key("n", "U", vim.cmd.UndotreeToggle, opts("Toggle Undotree"))
+

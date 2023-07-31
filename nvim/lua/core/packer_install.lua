@@ -81,6 +81,16 @@ return packer.startup({
     use "nvim-telescope/telescope-packer.nvim"
     -- add git repo list to telescope
     use "cljoly/telescope-repo.nvim"
+    -- fuzzy search undofile
+    use {
+      "debugloop/telescope-undo.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+    }
+    -- add undoHistory management
+    use "mbbill/undotree"
     
     -- Completiion stuff
     use 'neovim/nvim-lspconfig'
