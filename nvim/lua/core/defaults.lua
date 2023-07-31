@@ -16,9 +16,9 @@ vim.opt.shiftwidth = 2
 -- -- don't expand right amount of spaces into tab
 vim.opt.expandtab = true
 -- -- reproduce indentation of previous line
--- vim.opt.autoindent = true
+vim.opt.autoindent = true
 -- -- try to be smart (increase indenting level after { for exemple)
--- vim.opt.smartindent = true
+vim.opt.smartindent = false
 -- -- show line number 
 vim.opt.number = true
 -- show relative line number 
