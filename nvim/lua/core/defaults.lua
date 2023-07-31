@@ -117,3 +117,5 @@ vim.opt.winblend=10
 vim.opt.showmode = false
 -- always show signcolumn to avoid text shifting
 vim.opt.signcolumn = "yes"
+-- add $ to make <cword> and when using motions
+vim.opt.iskeyword:append("$")
