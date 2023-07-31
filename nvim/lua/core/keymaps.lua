@@ -118,3 +118,16 @@ key('n', '<leader>dE', function() require('dapui').eval(vim.fn.input('[DAP] expr
 
 key("n", "U", vim.cmd.UndotreeToggle, opts("Toggle Undotree"))
 
+-- #######
+-- # L%P #
+-- #######
+
+key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
+key('n', "gh", function() vim.lsp.buf.hover() end, opts("Show [h]over"))
+key('n', "<leader>vs", function() vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>')) end, opts("[V]iew Workspace [symboles]"))
+key('n', "<leader>vd", function() vim.diagnostic.open_float() end, opts("[G]o to [D]efinition"))
+key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
+key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
+key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
+key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
+key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
