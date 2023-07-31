@@ -27,6 +27,9 @@ key('n', "<C-Down>", ":resize +2<CR>", opts())
 key('n', "<C-Left>", ":vertical resize -2<CR>", opts())
 key('n', "<C-Right>", ":vertical resize +2<CR>", opts())
 
+-- auto instert date and time
+key('n', "<F9>", "i<C-R>=strftime('%Y-%m-%d %H:%M')<CR>")
+key('i', "<F9>", "<C-R>=strftime('%Y-%m-%d %H:%M')<CR>")
 
 
 -- ###############
