@@ -18,7 +18,7 @@ if not ts_themes_status then
   return
 end
 
-require("telescope").load_extension "packer"
+require("telescope").load_extension "lazy"
 require("telescope").load_extension "repo"
 require('telescope').load_extension 'dap'
 
@@ -103,13 +103,7 @@ local custom_center = {
     icon = '🔌   ',
     desc = 'Plugins         ',
     key = '<C-p>',
-    action = function()
-      telescope.extensions.packer.packer({
-        
-        prompt_title = '  Plugins',
-        previewer = false
-      })
-    end
+    command = "Telescope lazy"
   },
   {
     icon = '📝   ',

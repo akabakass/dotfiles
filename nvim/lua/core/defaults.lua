@@ -18,7 +18,9 @@ vim.opt.expandtab = true
 -- -- reproduce indentation of previous line
 vim.opt.autoindent = true
 -- -- try to be smart (increase indenting level after { for exemple)
-vim.opt.smartindent = false
+vim.opt.smartindent = true
+-- specific php indent to override vim weird default
+vim.g['PHP_default_indenting'] = 2
 -- -- show line number 
 vim.opt.number = true
 -- show relative line number 

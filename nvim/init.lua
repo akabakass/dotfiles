@@ -1,4 +1,4 @@
 require("core.defaults")
-require("core.keymaps")
-require("core.packer")
+require("core.lazy")
 require("core.packer_install")
+require("core.keymaps")

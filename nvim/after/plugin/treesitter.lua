@@ -8,13 +8,13 @@ treesitter.setup({
   auto_install = true,
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false
+    additional_vim_regex_highlighting = true
   },
   indent = {
-    enable = true
+    enable = false
   },
   autopairs = {
-    enable = true
+    enable = false
   },
   rainbow = {
     enable = true,
