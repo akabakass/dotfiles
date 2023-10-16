@@ -71,11 +71,3 @@ telescope.setup({
 })
 
 
-key = vim.keymap.set
-
-local opts = function(desc)
-  return {noremap = true, silent = true, desc = desc}
-end
-
-key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", opts("[F]ind [P]roject"))
-

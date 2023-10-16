@@ -12,10 +12,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
--- auto source and resync when packer_install.lua is saved
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = "source <afile> | LazySync",
-  group = vim.api.nvim_create_augroup("lazy_install", {clear = true}),
-  pattern = vim.fn.expand("lazy_install.lua")
-})
-

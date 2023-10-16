@@ -9,15 +9,16 @@ return lazy.setup({
   'ethanholz/nvim-lastplace',
 
   --install pretty icons
-  'nvim-tree/nvim-web-devicons',
+  {
+    'nvim-tree/nvim-web-devicons',
+    lazy = true
+  },
 
   -- improve syntax highlighting, and navigation
   {
     "nvim-treesitter/nvim-treesitter",
-    build = function()
-      local ts_update = require('nvim-treesitter.install').update({with_sync = true})
-      ts_update()
-    end
+    lazy = true,
+    build = ":TSUpdate"
   },
   {
     "HiPhish/nvim-ts-rainbow2",
@@ -56,7 +57,10 @@ return lazy.setup({
   },
 
   -- show indentation guides
-  "lukas-reineke/indent-blankline.nvim",
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl"
+  },
 
   -- preview colors (ex: #aeaeff)
   'norcalli/nvim-colorizer.lua',
@@ -126,6 +130,8 @@ return lazy.setup({
     "williamboman/mason-lspconfig.nvim",
     {
       "j-hui/fidget.nvim",
+      tag = "legacy",
+      event = "LspAttach",
       opts = {} -- same as calling resuire('fidget').setup({})
     }
   },
@@ -180,5 +186,8 @@ return lazy.setup({
   -- when your sick of it
   'Eandrju/cellular-automaton.nvim'
 
+},
+{
+  lazy = true
 })
 

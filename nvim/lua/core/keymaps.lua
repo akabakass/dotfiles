@@ -59,6 +59,9 @@ if telescope_b_status then
   key("n", "<leader>fh", telescope_b.help_tags, opts("[F]ind [H]elp"))
   key("n", "<leader>fb", telescope_b.buffers, opts("[F]ind [B]uffer"))
   key("n", "<leader>fs", telescope_b.lsp_document_symbols, opts("[F]ind [S]ymbols"))
+  key('n', "<leader>fr", telescope_b.lsp_references, opts("[F]ind [R]eferences"))
+  key('n', "<leader>fd", telescope_b.lsp_definitions, opts("[F]ind [D]efinitions"))
+  key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", opts("[F]ind [P]roject"))
 end
 key("n", "<leader>u", "<cmd>Telescope undo<CR>")
 -- ############
@@ -129,8 +132,3 @@ key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efiniti
 key('n', "gh", function() vim.lsp.buf.hover() end, opts("Show [h]over"))
 key('n', "<leader>vs", function() vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>')) end, opts("[V]iew Workspace [symboles]"))
 key('n', "<leader>vd", function() vim.diagnostic.open_float() end, opts("[G]o to [D]efinition"))
-key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
-key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
-key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
-key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
-key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efinition"))
