@@ -90,7 +90,13 @@ return lazy.setup({
       "nvim-telescope/telescope.nvim"
     }
   },
-  "NStefan002/speedtyper.nvim",
+  {
+    "NStefan002/speedtyper.nvim",
+    cmd = "Speedtyper",
+    opts = {
+
+    }
+  },
   {
     "m4xshen/hardtime.nvim",
     dependencies = {
