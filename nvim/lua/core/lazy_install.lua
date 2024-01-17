@@ -98,6 +98,14 @@ return lazy.setup({
     }
   },
   {
+    '2kabhishek/nerdy.nvim',
+    dependencies = {
+        'stevearc/dressing.nvim',
+        'nvim-telescope/telescope.nvim',
+    },
+    cmd = 'Nerdy',
+  },
+  {
     "m4xshen/hardtime.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
