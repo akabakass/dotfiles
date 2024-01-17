@@ -215,7 +215,8 @@ return lazy.setup({
   "tpope/vim-fugitive",
 
   -- when your sick of it
-  'Eandrju/cellular-automaton.nvim'
+  'Eandrju/cellular-automaton.nvim',
+
   -- screensaver
   "tamton-aquib/zone.nvim",
 
