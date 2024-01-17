@@ -26,10 +26,6 @@ treesitter.setup({
     -- Highlight the entire buffer all at once
     strategy = require('ts-rainbow').strategy.global,
   },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false
-  },
   matchup = {
     enable = true,              -- mandatory, false will disable the whole extension
   },
@@ -87,4 +83,11 @@ if treesitter_context_status then
     zindex = 20, -- The Z-index of the context window
     on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
   }
+end
+
+local ts_context_commentstring_status, ts_context_commentstring = pcall(require, 'ts_context_commentstring')
+if ts_context_commentstring_status then
+  ts_context_commentstring.setup({
+    enable_autocmd = true
+  })
 end
