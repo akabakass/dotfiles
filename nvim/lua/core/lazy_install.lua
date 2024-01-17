@@ -75,7 +75,6 @@ return lazy.setup({
   -- fuzzy finder
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.1',
     dependencies = { {'nvim-lua/plenary.nvim'} }
   },
   -- add packer functionality to telescope
@@ -148,7 +147,11 @@ return lazy.setup({
   "hrsh7th/cmp-nvim-lua",
 
   -- Snippet completion
-  'L3MON4D3/LuaSnip',
+  {
+    'L3MON4D3/LuaSnip',
+    version = "v2;*",
+    build = "make install_jsregexp"
+  },
   'saadparwaiz1/cmp_luasnip',
   'doxnit/cmp-luasnip-choice',
 
