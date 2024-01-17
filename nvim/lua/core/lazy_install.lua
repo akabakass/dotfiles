@@ -191,6 +191,8 @@ return lazy.setup({
 
   -- when your sick of it
   'Eandrju/cellular-automaton.nvim'
+  -- screensaver
+  "tamton-aquib/zone.nvim",
 
 },
 {
