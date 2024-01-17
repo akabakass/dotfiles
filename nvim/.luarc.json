@@ -1,0 +1,14 @@
+{
+    "workspace.library": [
+        "/home/jc/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/local/share/nvim/runtime/lua",
+        "/home/jc/.local/share/nvim/lazy/nvim-dap-ui/lua",
+        "/home/jc/dotfiles/nvim/lua",
+        "${3rd}/luv/library",
+        "${3rd}/lfs/library",
+        "${3rd}/luassert/library"
+    ],
+    "diagnostics.globals": [
+        "lfs"
+    ]
+}
