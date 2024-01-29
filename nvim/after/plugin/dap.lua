@@ -20,6 +20,20 @@ nvim_dap.configurations.php = {
   }
 }
 
+require("dap-vscode-js").setup({
+  adapters = {'pwa-node', 'node-terminal'},
+})
+
+nvim_dap.configurations.javascript = {
+  {
+    type = "pwa-node",
+    request = "launch",
+    name = "Launch file",
+    program = "${file}",
+    cwd = "${workspaceFolder}"
+  }
+}
+
 local nvim_dap_ui_status, nvim_dap_ui = pcall(require, "dapui")
 if nvim_dap_ui_status then
   nvim_dap_ui.setup()

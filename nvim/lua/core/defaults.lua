@@ -1,3 +1,6 @@
+-- use space as leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 -- set termguicolor to allow better coloration
 vim.opt.termguicolors = true
 -- resource that page on save

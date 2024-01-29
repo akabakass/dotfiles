@@ -121,7 +121,7 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:./vendor/bin
-export EDITOR='lvim'
+export EDITOR='nvim'
 svru() {
   svn revert "$@" && svn update "$@"
 }

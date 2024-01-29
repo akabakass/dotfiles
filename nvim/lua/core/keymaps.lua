@@ -4,11 +4,8 @@ local opts = function(desc)
   return {noremap = true, silent = true, desc = desc}
 end
 
--- try space as leader key
-key("", "<Space>", "<Nop>", opts("set space as leader"))
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
+-- key("", "<Space>", "<Nop>", opts("set space as leader"))
 -- ###############
 -- # NORMAL MODE #
 -- ###############
