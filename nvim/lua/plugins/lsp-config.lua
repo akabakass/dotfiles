@@ -11,6 +11,8 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    config = function ()
+    end
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -28,8 +30,22 @@ return {
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
         function (server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup ({
-            root_dir = function() return vim.loop.cwd() end
+          -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+          local lsp_config = require("lspconfig")
+          lsp_config[server_name].setup ({
+            root_dir = function(file_name)
+              return lsp_config.util.find_git_ancestor(file_name)
+            end,
+            -- capabilities = capabilities
+          })
+        end,
+        ['html'] = function()
+          local lspconfig = require('lspconfig')
+          lspconfig.html.setup({
+            filetypes = {
+              "php",
+              "html"
+            }
           })
         end
       }
@@ -39,11 +55,11 @@ return {
     "folke/neodev.nvim",
     config = true,
     opts = {
-      library = { 
-        plugins = { 
-          "nvim-dap-ui" 
-        }, 
-        types = true 
+      library = {
+        plugins = {
+          "nvim-dap-ui"
+        },
+        types = true
       }
     }
   },

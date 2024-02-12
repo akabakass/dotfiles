@@ -63,7 +63,7 @@ bindsym Ctrl+space exec rofi  -show drun
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # Screen capture
-bindsym Ctrl+Shift+$alt+p exec --no-startup-id flameshot gui 
+bindsym Ctrl+Shift+$alt+p exec --no-startup-id flameshot gui
 # launch calc
 bindsym $mod+KP_Enter exec --no-startup-id mate-calc
 # switch audio source
@@ -233,7 +233,7 @@ workspace $ws9 output HDMI-A-0
 
 # spotify didn't set classname on startup thus we need to do it that way
 for_window [class="Spotify"] move to workspace $ws9
-for_window [class="youtube-music-desktop-app"] move to workspace $ws9
+for_window [class="YouTube Music Desktop App"] move to workspace $ws9
 for_window [instance="Code"] move to workspace $ws2
 # for_window [instance="Ssh"] move to workspace $ws3
 for_window [instance="Term"] move to workspace $ws4
@@ -253,7 +253,7 @@ for_window [window_type="menu"] floating enable
 for_window [window_role="About"] floating enable
 
 for_window [class="^Google-chrome" instance="^notion"] move scratchpad
-# some visual options 
+# some visual options
 hide_edge_borders vertical
 force_display_urgency_hint 1000 ms
 
