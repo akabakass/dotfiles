@@ -42,7 +42,7 @@ return {
       "nvim-treesitter/nvim-treesitter"
     },
     opts = {
-     enable = true, 
+     enable = true,
      max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
      min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
      line_numbers = true,
@@ -68,6 +68,7 @@ return {
     config = function(_,opts)
       require("nvim-treesitter.configs").setup(opts)
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_matchparen_deferred = 1
     end
   },
   {

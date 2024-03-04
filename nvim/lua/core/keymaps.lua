@@ -58,6 +58,7 @@ if telescope_b_status then
   key("n", "<leader>fs", telescope_b.lsp_document_symbols, opts("[F]ind [S]ymbols"))
   key('n', "<leader>fr", telescope_b.lsp_references, opts("[F]ind [R]eferences"))
   key('n', "<leader>fd", telescope_b.lsp_definitions, opts("[F]ind [D]efinitions"))
+  key('n', "<leader>fy", telescope_b.registers, opts("[F]ind [Y]anks"))
   key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", opts("[F]ind [P]roject"))
 end
 key("n", "<leader>u", "<cmd>Telescope undo<CR>")
@@ -86,8 +87,8 @@ key('x', 'm', ":lua require('tsht').nodes()<CR>", opts("treehopper"))
 -- #######
 
 key('n', '<F5>', function() require('dap').continue() end, opts("Start debbuging"))
-key('n', '<F6>', function() 
-  require('dap').close() 
+key('n', '<F6>', function()
+  require('dap').close()
   require('dapui').close()
 end, opts("Stop debugging"))
 key('n', '<F2>', function() require('dap').step_over() end, opts("Step over"))
