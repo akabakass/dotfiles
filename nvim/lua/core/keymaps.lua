@@ -130,3 +130,9 @@ key('n', "gd", function() vim.lsp.buf.definition() end, opts("[G]o to [D]efiniti
 key('n', "gh", function() vim.lsp.buf.hover() end, opts("Show [h]over"))
 key('n', "<leader>vs", function() vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>')) end, opts("[V]iew Workspace [symboles]"))
 key('n', "<leader>vd", function() vim.diagnostic.open_float() end, opts("[G]o to [D]efinition"))
+
+-- ################
+-- # Global notes #
+-- ################
+
+key('n', '<leader>gn', function() require("global-note").toggle_note() end, opts("Toggle [G]lobal [N]otes"))
