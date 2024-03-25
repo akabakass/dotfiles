@@ -1,54 +1,14 @@
-local nvim_dap_status, nvim_dap = pcall(require, "dap")
-if not nvim_dap_status then
-  return
-end
+return {
 
-nvim_dap.adapters.php = {
-  type = 'executable',
-  command = 'node',
-  args = {
-    '/home/jc/dotfiles/nvim/src/vscode-php-debug/out/phpDebug.js'
-  }
 }
 
-nvim_dap.configurations.php = {
-  {
-    type = 'php',
-    request = 'launch',
-    name = 'Listen for Xdebug',
-    port = 9001
-  }
-}
+
 
 require("dap-vscode-js").setup({
   adapters = {'pwa-node', 'node-terminal'},
 })
 
-nvim_dap.configurations.javascript = {
-  {
-    type = "pwa-node",
-    request = "launch",
-    name = "Launch file",
-    program = "${file}",
-    cwd = "${workspaceFolder}"
-  }
-}
 
-local nvim_dap_ui_status, nvim_dap_ui = pcall(require, "dapui")
-if nvim_dap_ui_status then
-  nvim_dap_ui.setup()
-  nvim_dap.listeners.after.event_initialized["dapui_config"] = function()
-    nvim_dap_ui.open({
-      reset = true
-    })
-  end
-  nvim_dap.listeners.before.event_terminated["nvim_dap_ui_config"] = function()
-    nvim_dap_ui.close()
-  end
-  nvim_dap.listeners.before.event_exited["nvim_dap_ui_config"] = function()
-    nvim_dap_ui.close()
-  end
-end
 
 local nvim_virtual_text_status, nvim_virtual_text = pcall(require, "nvim-dap-virtual-text")
 if nvim_virtual_text_status then
