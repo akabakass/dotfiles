@@ -29,14 +29,6 @@ key('n', "<F9>", "i<C-R>=strftime('%Y-%m-%d %H:%M')<CR>")
 key('i', "<F9>", "<C-R>=strftime('%Y-%m-%d %H:%M')<CR>")
 
 
--- ###############
--- # VISUAL MODE #
--- ###############
-
--- stay in indent mode
-key('v', '<', '<gv', opts())
-key('v', '>', '>gv', opts())
-
 -- #############
 -- # nvim-tree #
 -- #############
