@@ -38,6 +38,7 @@
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "profile.nvim": { "branch": "master", "commit": "3c5aaf2f8b2e4c2bc48d2cde396a55892e0267ad" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
+  "stay-in-place.nvim": { "branch": "main", "commit": "0628b6db8970fc731abf9608d6f80659b58932c9" },
   "telescope-lazy.nvim": { "branch": "main", "commit": "3487d6212fe1b5750ae239e2207f4cb603004d36" },
   "telescope-repo.nvim": { "branch": "master", "commit": "b4c0b70deb43e7840c231e9530dca9d1e49cf79c" },
   "telescope-undo.nvim": { "branch": "main", "commit": "d3afc1c105535a90caec092ce27a113f77ba7b84" },
