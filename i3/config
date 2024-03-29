@@ -267,7 +267,6 @@ exec --no-startup-id picom
 exec --no-startup-id ~/.config/i3/change_background.sh
 exec --no-startup-id youtube-music-desktop-app
 exec --no-startup-id firefox
-exec --no-startup-id konsole --name Code
-exec --no-startup-id konsole --name Ssh
+exec --no-startup-id konsole --name Code -e tmux
 exec --no-startup-id konsole --name Term
 exec --no-startup-id ~/.config/i3/notion_launcher.sh

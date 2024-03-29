@@ -12,11 +12,6 @@ end
 
 key('n', '<C-n>', ":Dashboard<CR>", opts("launch dashboard"))
 
--- allow to navigate better between windows
-key('n', "<C-h>", "<C-w>h", opts("move to lefter window"))
-key('n', "<C-j>", "<C-w>j", opts("move to lower window"))
-key('n', "<C-k>", "<C-w>k", opts("move to upper window"))
-key('n', "<C-l>", "<C-w>l", opts("move to righter window"))
 
 --easy resizing with arrow keys
 key('n', "<C-Up>", ":resize -2<CR>", opts())
