@@ -36,6 +36,7 @@ if telescope_b_status then
   Key("n", "<leader>fh", telescope_b.help_tags, Opts("[F]ind [H]elp"))
   Key("n", "<leader>fb", telescope_b.buffers, Opts("[F]ind [B]uffer"))
   Key("n", "<leader>fs", telescope_b.lsp_document_symbols, Opts("[F]ind [S]ymbols"))
+  Key("n", "<leader>fm", function() telescope_b.lsp_document_symbols({symbols={'function', 'method'}}) end, Opts("[F]ind [M]ethods"))
   Key('n', "<leader>fr", telescope_b.lsp_references, Opts("[F]ind [R]eferences"))
   Key('n', "<leader>fd", telescope_b.lsp_definitions, Opts("[F]ind [D]efinitions"))
   Key('n', "<leader>fy", telescope_b.registers, Opts("[F]ind [Y]anks"))
