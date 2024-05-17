@@ -39,7 +39,7 @@ return {
       gitsigns = true,
       treesitter = true,
       treesitter_context = true,
-      ts_rainbow2 = true,
+      rainbow_delimiters = true,
       notify = true,
       dashboard = true,
       indent_blankline = {
