@@ -1,10 +1,5 @@
 return {
-  "kndndrj/nvim-dbee",
-  dependencies = {
-    "MunifTanjim/nui.nvim"
-  },
-  build = function()
-    require("dbee").install()
-  end,
-  config = true
+  "tpope/vim-dadbod",
+  "kristijanhusak/vim-dadbod-completion",
+  "kristijanhusak/vim-dadbod-ui"
 }

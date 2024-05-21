@@ -9,12 +9,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      {
-        "MattiasMTS/cmp-dbee",
-        ft = "sql",
-        opts = {}
-      }
+      "hrsh7th/cmp-nvim-lsp-signature-help"
     },
     config = function()
       vim.opt.shortmess:append("c")
@@ -83,16 +78,13 @@ return {
           }
         },
         sources = cmp.config.sources({
-          { name = "cmp-dbee" },
+          { name = "vim-dadbod-completion" },
           { name = 'nvim_lsp_signature_help' },
           { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer', keyword_length = 5 }
-        },
-        {
-          { name = 'buffer'}
         }),
         formatting = {
           fields = {  "abbr", "menu", "kind" },
@@ -108,11 +100,12 @@ return {
               buffer = "[Buffer]",
               path = "[Path]",
               cmdline = "[Cmdline]",
-              cmdline_history = "[Cmdline_History]"
+              cmdline_history = "[Cmdline_History]",
+              vim_dadbod_completion = "[DB]"
             })[entry.source.name]
             return vim_item
           end
-        }
+        },
       })
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),

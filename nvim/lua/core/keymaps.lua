@@ -111,3 +111,13 @@ Key('n', "gd", function() vim.lsp.buf.definition() end, Opts("[G]o to [D]efiniti
 Key('n', "gh", function() vim.lsp.buf.hover() end, Opts("Show [h]over"))
 Key('n', "<leader>vs", function() vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>')) end, Opts("[V]iew Workspace [symboles]"))
 Key('n', "<leader>vd", function() vim.diagnostic.open_float() end, Opts("[G]o to [D]efinition"))
+
+-- ##########
+-- # dadbod #
+-- ##########
+
+Key("n", "<leader>db", function ()
+  vim.api.nvim_command('tabnew')
+  vim.api.nvim_command('DBUI')
+  print('yay')
+end, Opts("[DB]ui"))
