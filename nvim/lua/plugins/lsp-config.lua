@@ -53,19 +53,12 @@ return {
   },
   {
     "folke/neodev.nvim",
-    config = true,
     opts = {
-      library = {
-        plugins = {
-          "nvim-dap-ui"
-        },
-        types = true
-      }
+      pathSctrict = false
     }
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    config = true,
     opts = {
       auto_update = true,
       run_on_start = true
