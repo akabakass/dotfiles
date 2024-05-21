@@ -24,9 +24,9 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 -- specific php indent to override vim weird default
 vim.g['PHP_default_indenting'] = 2
--- -- show line number 
+-- -- show line number
 vim.opt.number = true
--- show relative line number 
+-- show relative line number
 vim.opt.relativenumber = true
 -- show cursor position on bottom right
 vim.opt.ruler = true
@@ -46,7 +46,7 @@ vim.opt.listchars = {nbsp = "␣", tab = "->", trail = "."}
 vim.opt.autoread = false
 -- wrap long lines
 vim.opt.linebreak = true
--- remove . from allowed characters to wrap long lines to avoid sql cut inside alias.column definition 
+-- remove . from allowed characters to wrap long lines to avoid sql cut inside alias.column definition
 vim.opt.breakat:remove(".")
 -- continue wrapped line indented
 vim.opt.breakindent = true
@@ -58,7 +58,7 @@ vim.opt.showbreak = ">>>>"
 vim.opt.cmdwinheight = 15
 -- show a line under active row
 vim.opt.cursorline = true
--- Highlight the column of the cursor    
+-- Highlight the column of the cursor
 vim.opt.cursorcolumn = true
 -- show cursorcolumn and row only in the current window
 vim.api.nvim_create_autocmd({'WinEnter', 'WinLeave'}, {
@@ -81,7 +81,7 @@ vim.opt.helplang = "fr,en"
 vim.opt.hidden = true
 -- show cmd modification live and in a preview window at the same time
 vim.opt.inccommand = "split"
--- remove highlighting of search which stay on after 
+-- remove highlighting of search which stay on after
 vim.opt.hlsearch = false
 -- highlight all search while searching, but remove highlighting when finished
 vim.api.nvim_create_autocmd({"CmdlineEnter", "CmdlineLeave"}, {
@@ -103,7 +103,7 @@ vim.opt.pumblend = 10
 vim.opt.splitbelow = true
 -- open the new file in a vertical split on right of the current one
 vim.opt.splitright = true
--- set undo file to keep undo when retuning to a already edited file 
+-- set undo file to keep undo when retuning to a already edited file
 vim.opt.undofile = true
 -- set undo file maximum changes that has been done. set a little high here cause it has saved me in the past to recover a file
 vim.opt.undolevels = 10000
@@ -124,3 +124,5 @@ vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 -- add $ to make <cword> and when using motions
 vim.opt.iskeyword:append("$")
+-- don't have "o" add a comment
+vim.opt.formatoptions:remove("o")
