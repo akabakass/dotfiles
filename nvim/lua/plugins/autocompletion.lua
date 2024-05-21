@@ -131,6 +131,16 @@ return {
           luasnip.jump(-1)
         end
       end, {silent = true})
+
+      -- add closing parenthesis on function confirm
+      local Kind=cmp.lsp.CompletionItemKind
+      cmp.event:on(
+      'confirm_done',
+      function (evt)
+        if vim.tbl_contains({Kind.Function,Kind.Method},evt.entry:get_completion_item().kind) then
+          vim.api.nvim_feedkeys('()'..vim.api.nvim_replace_termcodes('<Left>',true,true,true),'n',false)
+        end
+      end)
     end
   }
 }
