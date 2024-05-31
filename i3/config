@@ -296,8 +296,11 @@ for_window [window_role="About"] floating enable
 
 for_window [class="^Google-chrome" instance="^notion"] move scratchpad
 # some visual options
-hide_edge_borders vertical
 force_display_urgency_hint 1000 ms
+default_border pixel 1
+
+gaps outer 2
+gaps inner 5
 
 
 
