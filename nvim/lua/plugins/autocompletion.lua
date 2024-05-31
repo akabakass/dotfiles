@@ -16,34 +16,8 @@ return {
       vim.opt.shortmess:append("c")
       local cmp = require('cmp')
       local luasnip = require('luasnip')
+      local lspkind = require("lspkind")
       require("luasnip.loaders.from_vscode").lazy_load() -- to use friendly-snippets
-      local kind_icons = {
-        Text = "",
-        Method = "m",
-        Function = "",
-        Constructor = "",
-        Field = "",
-        Variable = "",
-        Class = "",
-        Interface = "",
-        Module = "",
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
-      }
 
       cmp.setup({
         completion = {
@@ -76,7 +50,21 @@ return {
           ["<C-e>"] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close()
-          }
+          },
+          ["<Tab>"] = function(fallback)
+            if  luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end,
+          ["<S-Tab>"] = function(fallback)
+            if  luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end
         },
         sources = cmp.config.sources({
           { name = "vim-dadbod-completion" },
@@ -89,11 +77,12 @@ return {
         }),
         formatting = {
           fields = {  "abbr", "menu", "kind" },
-          format = function(entry, vim_item)
-            -- Kind icons
-            -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-            vim_item.menu = ({
+          format = lspkind.cmp_format({
+            mode = "symbol",
+            maxwidth = 50,
+            ellipsis_char = '...',
+            show_labelDetails = true,
+            menu = ({
               nvim_lsp = "[LSP]",
               rg = "[RG]",
               luasnip = "[Snippet]",
@@ -101,12 +90,10 @@ return {
               buffer = "[Buffer]",
               path = "[Path]",
               cmdline = "[Cmdline]",
-              cmdline_history = "[Cmdline_History]",
-              vim_dadbod_completion = "[DB]"
-            })[entry.source.name]
-            return vim_item
-          end
-        },
+              cmdline_history = "[Cmdline_History]"
+            })
+          })
+        }
       })
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
@@ -114,23 +101,13 @@ return {
           { name = 'buffer' }
         }
       })
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'cmdline' },
-          { name = 'path' },
-        }
-      })
-      Key({'i', 's'}, "<Tab>", function()
-        if  luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        end
-      end, {silent = true})
-      Key({'i', 's'}, "<S-Tab>", function()
-        if  luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        end
-      end, {silent = true})
+      -- cmp.setup.cmdline(':', {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = {
+      --     { name = 'cmdline' },
+      --     { name = 'path' },
+      --   }
+      -- })
 
       -- add closing parenthesis on function confirm
       local Kind=cmp.lsp.CompletionItemKind

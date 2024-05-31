@@ -2,11 +2,17 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     "rcarriga/nvim-dap-ui",
-    "nvim-neotest/nvim-nio"
+    "nvim-neotest/nvim-nio",
+    "theHamsta/nvim-dap-virtual-text"
   },
   config = function()
     local dap = require('dap')
     local dap_ui = require('dapui')
+    local dap_virtual_text = require('nvim-dap-virtual-text')
+    dap_virtual_text.setup({
+      enabled = true
+    })
+    vim.g.dap_virtual_text = true
     dap_ui.setup()
     dap.listeners.before.attach.dapui_config = function()
       dap_ui.open()
