@@ -125,4 +125,11 @@ vim.opt.signcolumn = "yes"
 -- add $ to make <cword> and when using motions
 vim.opt.iskeyword:append("$")
 -- don't have "o" add a comment
-vim.opt.formatoptions:remove("o")
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = vim.api.nvim_create_augroup("FormatOptions", { clear = true }),
+  pattern = { "*" },
+  callback = function()
+    vim.opt_local.fo:remove("o")
+    vim.opt_local.fo:remove("r")
+  end,
+})
