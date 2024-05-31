@@ -51,7 +51,7 @@ vim.opt.breakat:remove(".")
 -- continue wrapped line indented
 vim.opt.breakindent = true
 -- config for breakindent (shift = indent n more chars, sbr = show display showbreak chars before indent
-vim.opt.breakindentopt = {shift = 4, sbr}
+vim.opt.breakindentopt = {shift = 4, 'sbr'}
 -- set showbreak chars
 vim.opt.showbreak = ">>>>"
 -- show more lines in the command-line window
