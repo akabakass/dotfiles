@@ -10,7 +10,9 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp-signature-help"
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-cmdline",
+      "dmitmel/cmp-cmdline-history"
     },
     config = function()
       vim.opt.shortmess:append("c")
@@ -45,7 +47,7 @@ return {
           ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
           ["<CR>"] = cmp.mapping(cmp.mapping.confirm({
             cmp.ConfirmBehavior.insert,
-            select = true
+            select = false
           }), { "i", "c" }),
           ["<C-e>"] = cmp.mapping {
             i = cmp.mapping.abort(),
@@ -98,16 +100,18 @@ return {
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
+          { name = 'cmdline_history' },
           { name = 'buffer' }
         }
       })
-      -- cmp.setup.cmdline(':', {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = {
-      --     { name = 'cmdline' },
-      --     { name = 'path' },
-      --   }
-      -- })
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'cmdline_history' },
+          { name = 'cmdline' },
+          { name = 'path' },
+        }
+      })
 
       -- add closing parenthesis on function confirm
       local Kind=cmp.lsp.CompletionItemKind
