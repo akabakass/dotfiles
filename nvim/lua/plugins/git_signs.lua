@@ -2,11 +2,11 @@ return {
   "lewis6991/gitsigns.nvim",
   opts = {
     signs = {
-      add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-      change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-      delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-      topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-      changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+      add = { GitSignsAdd = "GitSignsAdd", text = "▎", GitSignsAddNr = "GitSignsAddNr", GitSignsAddLn = "GitSignsAddLn" },
+      change = { GitSignsChange = "GitSignsChange", text = "▎", GitSignsChangeNr = "GitSignsChangeNr", GitSignsChangeLn = "GitSignsChangeLn" },
+      delete = { GitSignsDelete = "GitSignsDelete", text = "契", GitSignsDeleteNr = "GitSignsDeleteNr", GitSignsDeleteLn = "GitSignsDeleteLn" },
+      topdelete = { GitSignsTopdelete = "GitSignsDelete", text = "契", GitSignsTopdeleteNr = "GitSignsDeleteNr", GitSignsTopdeleteLn = "GitSignsDeleteLn" },
+      changedelete = { GitSignsChangedelete = "GitSignsChange", text = "▎", GitSignsChangedeleteRn = "GitSignsChangeNr", GitSignsChangedeleteLn = "GitSignsChangeLn" },
     },
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
     numhl = true, -- Toggle with `:Gitsigns toggle_numhl`

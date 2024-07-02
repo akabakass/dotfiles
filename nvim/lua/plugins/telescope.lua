@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { 
+    dependencies = {
       'nvim-lua/plenary.nvim'
     },
     config = function(_,opts)
@@ -42,7 +42,9 @@ return {
             use_delta = true,
             use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
             side_by_side = true,
-            diff_context_lines = vim.o.scrolloff,
+            vim_diff_opts = {
+              ctxlen = vim.o.scrolloff,
+            },
             mappings = {
               i = {
                 -- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
@@ -112,4 +114,3 @@ return {
   }
 
 }
-
