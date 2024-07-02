@@ -30,6 +30,7 @@ Key("n", "<C-f>", ":NvimTreeFindFileToggle<CR>", Opts())
 
 local telescope_b_status, telescope_b = pcall(require, "telescope.builtin")
 if telescope_b_status then
+  Key("n", "<leader>tt", telescope_b.resume, Opts("resume [TT]elescope"))
   Key("n", "<leader>ff", telescope_b.find_files, Opts("[F]ind [F]iles"))
   Key("n", "<leader>gl", telescope_b.live_grep, Opts("[G]rep [L]ive"))
   Key("n", "<leader>gs", telescope_b.grep_string, Opts("[G]rep [S]tring"))
