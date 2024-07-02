@@ -110,8 +110,9 @@ Key("n", "U", vim.cmd.UndotreeToggle, Opts("Toggle Undotree"))
 -- # L%P #
 -- #######
 
-Key('n', "gd", function() vim.lsp.buf.definition() end, Opts("[G]o to [D]efinition"))
-Key('n', "gh", function() vim.lsp.buf.hover() end, Opts("Show [h]over"))
+Key('n', "<leader>gd", function() vim.lsp.buf.definition() end, Opts("[G]o to [D]efinition"))
+Key('n', "<leader>sh", function() vim.lsp.buf.hover() end, Opts("[S]how [h]over"))
+Key('n', "<leader>ss", function() vim.lsp.buf.signature_help() end, Opts("[S]how [S]ignature"))
 Key('n', "<leader>vs", function() vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>')) end, Opts("[V]iew Workspace [symboles]"))
 Key('n', "<leader>vd", function() vim.diagnostic.open_float() end, Opts("[G]o to [D]efinition"))
 
