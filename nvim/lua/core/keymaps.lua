@@ -121,7 +121,6 @@ Key('n', "<leader>vd", function() vim.diagnostic.open_float() end, Opts("[G]o to
 -- ##########
 
 Key("n", "<leader>dB", function ()
-  vim.api.nvim_command('tabnew')
   vim.api.nvim_command('DBUI')
   print('yay')
 end, Opts("[DB]ui"))
