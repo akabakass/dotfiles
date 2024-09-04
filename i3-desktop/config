@@ -275,7 +275,7 @@ workspace $ws9 output HDMI-A-0
 
 # spotify didn't set classname on startup thus we need to do it that way
 for_window [class="Spotify"] move to workspace $ws9
-for_window [class="YouTube Music Desktop App"] move to workspace $ws9
+for_window [class="youtube music desktop app"] move to workspace $ws9
 for_window [instance="Code"] move to workspace $ws2
 # for_window [instance="Ssh"] move to workspace $ws3
 for_window [instance="Term"] move to workspace $ws4
