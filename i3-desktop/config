@@ -49,6 +49,7 @@ set $base #1e1e2e
 set $mantle #181825
 set $crust #11111b
 
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -275,7 +276,7 @@ workspace $ws9 output HDMI-A-0
 
 # spotify didn't set classname on startup thus we need to do it that way
 for_window [class="Spotify"] move to workspace $ws9
-for_window [class="youtube music desktop app"] move to workspace $ws9
+for_window [title="^YouTube"] move to workspace $ws9
 for_window [instance="Code"] move to workspace $ws2
 # for_window [instance="Ssh"] move to workspace $ws3
 for_window [instance="Term"] move to workspace $ws4
