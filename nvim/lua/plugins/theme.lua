@@ -27,7 +27,7 @@ return {
     vim.cmd("colorscheme catppuccin")
   end,
   opts = {
-    -- flavour = "mocha",
+    flavour = "mocha",
     transparent_background = true,
     dim_inactive = {
       enabled = true,
