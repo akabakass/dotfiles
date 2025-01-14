@@ -1,0 +1,133 @@
+@import "mocha.css";
+
+* {
+  font-family: FantasqueSansMono Nerd Font;
+  font-size: 13px;
+  min-height: 0;
+}
+
+#waybar {
+  background: alpha(@surface0, 0.5);
+  color: @text;
+  margin: 0;
+  border-radius: 1rem;
+}
+
+tooltip {
+  background-color: @surface0;
+}
+
+#workspaces {
+  border-radius: 1rem;
+  margin: 5px;
+  background-color: @surface0;
+  margin-left: 1rem;
+}
+
+#workspaces button {
+  color: @lavender;
+  border-radius: 1rem;
+  padding: 0.4rem;
+}
+
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
+}
+
+#bluetooth,
+#memory,
+#cpu,
+#custom-vpn,
+#custom-music,
+#network,
+#tray,
+#clock,
+#pulseaudio,
+#custom-lock,
+#custom-power {
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+#memory,
+#custom-vpn,
+#clock {
+  color: @blue;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+#clock {
+  margin-right: 1rem;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#backlight, #battery {
+    border-radius: 0;
+}
+
+#cpu,
+#network,
+#pulseaudio {
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
+}
+
+#custom-lock {
+    border-radius: 1rem 0px 0px 1rem;
+    color: @lavender;
+}
+
+#custom-power {
+    margin-right: 1rem;
+    border-radius: 0px 1rem 1rem 0px;
+    color: @red;
+}
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
+
+
+#cpu.warning {
+  background-color: @red;
+}
+
+#custom-vpn.connected {
+  color: @red;
+}
+#custom-vpn {
+  color: @yellow;
+}
+
+#network {
+  color: @sapphire;
+}
