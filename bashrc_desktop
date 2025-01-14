@@ -125,3 +125,4 @@ export EDITOR='nvim'
 svru() {
   svn revert "$@" && svn update "$@"
 }
+. "$HOME/.cargo/env"
