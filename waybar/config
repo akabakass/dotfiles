@@ -35,7 +35,7 @@
     "network": {
       "format": "D:{bandwidthDownOctets}/U:{bandwidthUpOctets}",
       "format-disconnected": "N/A", //An empty format will hide the module.
-      "tooltip-format": "{ipaddr}/{cidr} 󰊗",
+      "tooltip-format": "{ifname} {ipaddr}/{cidr} 󰊗",
       "tooltip-format-disconnected": "Disconnected",
       "interval": 1
     },
