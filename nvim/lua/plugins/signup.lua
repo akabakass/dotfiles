@@ -1,5 +1,6 @@
 return {
   "Dan7h3x/signup.nvim",
+  enabled = false,
   opts = {
     silent = false,
     number = true,

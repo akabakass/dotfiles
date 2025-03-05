@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     dependencies = {
       "onsails/lspkind.nvim",
       "L3MON4D3/LuaSnip",
@@ -10,7 +11,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
+--      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history"
     },
@@ -70,7 +71,7 @@ return {
         },
         sources = cmp.config.sources({
           { name = "vim-dadbod-completion" },
-          { name = 'nvim_lsp_signature_help' },
+          --{ name = 'nvim_lsp_signature_help' },
           { name = 'nvim_lua' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },

@@ -10,7 +10,7 @@ return {
         php = { "easy-coding-standard" }
       }
     })
-    Key({"n", "v"}, "<leader>mp", function()
+    Key({ "n", "v" }, "<leader>mp", function()
       conform.format({
         lsp_fallback = true,
         async = false,

@@ -31,12 +31,13 @@ return {
         -- a dedicated handler.
         function (server_name) -- default handler (optional)
           -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+          local capabilities = require('blink.cmp').get_lsp_capabilities()
           local lsp_config = require("lspconfig")
           lsp_config[server_name].setup ({
             root_dir = function(file_name)
               return lsp_config.util.find_git_ancestor(file_name)
             end,
-            -- capabilities = capabilities
+--            capabilities = capabilities
           })
         end,
         ['html'] = function()

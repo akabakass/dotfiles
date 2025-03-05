@@ -16,6 +16,20 @@ Key('n', "<C-Right>", ":vertical resize +2<CR>", Opts())
 Key('n', "<F9>", "i<C-R>=strftime('%Y-%m-%d %H:%M')<CR>")
 Key('i', "<F9>", "<C-R>=strftime('%Y-%m-%d %H:%M')<CR>")
 
+-- navigate quickfix list
+Key('n', '<C-S-j>', "<cmd>cnext<CR>")
+Key('n', '<C-S-k>', "<cmd>cprev<CR>")
+
+-- open terminal
+Key('n', '<leader>st',
+function()
+  vim.cmd.new()
+  vim.cmd.term()
+  vim.cmd.wincmd('J')
+  vim.api.nvim_win_set_height(0, 15)
+end,
+Opts('open [S]mall [T]erminal')
+)
 
 -- #############
 -- # nvim-tree #
@@ -41,6 +55,7 @@ if telescope_b_status then
   Key('n', "<leader>fr", telescope_b.lsp_references, Opts("[F]ind [R]eferences"))
   Key('n', "<leader>fd", telescope_b.lsp_definitions, Opts("[F]ind [D]efinitions"))
   Key('n', "<leader>fy", telescope_b.registers, Opts("[F]ind [Y]anks"))
+  Key('n', "<leader>fq", telescope_b.quickfix, Opts("[F]ind [Q]uickfix"))
   Key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", Opts("[F]ind [P]roject"))
 end
 Key("n", "<leader>u", "<cmd>Telescope undo<CR>")
@@ -120,7 +135,20 @@ Key('n', "<leader>vd", function() vim.diagnostic.open_float() end, Opts("[G]o to
 -- # dadbod #
 -- ##########
 
-Key("n", "<leader>dB", function ()
-  vim.api.nvim_command('DBUI')
-  print('yay')
-end, Opts("[DB]ui"))
+Key("n", "<leader>dB", "<cmd>DBUIToggle<CR>", Opts("[DB]ui"))
+
+
+-- #############
+-- # lua debug #
+-- #############
+
+Key('n', "<leader><leader>x", "<cmd>source %<CR>", Opts("Source current file"))
+Key('n', "<leader>x", ":.lua<CR>", Opts("Execute current lua line"))
+Key('v', "<leader>x", ":lua<CR>", Opts("Execute selected lua lines"))
+
+
+-- #######
+-- # oil #
+-- #######
+
+Key('n', '-', '<cmd>Oil<CR>', Opts("Launch Oil"))

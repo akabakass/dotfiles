@@ -35,7 +35,7 @@ return {
       percentage = 0.15
     },
     integrations = {
-      cmp = true,
+      blink_cmp = true,
       gitsigns = true,
       treesitter = true,
       treesitter_context = true,
