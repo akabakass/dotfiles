@@ -4,9 +4,6 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets"
   },
-  enabled = function ()
-    return true
-  end,
   opts = {
     keymap = {
       preset = 'default',
@@ -30,7 +27,7 @@ return {
         auto_show = true
       },
       ghost_text = {
-        enabled = true
+        enabled = false
       },
       list = {
         selection = {
@@ -77,6 +74,7 @@ return {
     },
     sources = {
       default = {
+        'lazydev',
         'lsp',
         'dadbod',
         'path',
@@ -91,6 +89,11 @@ return {
         dadbod = {
           name = "Dadbod",
           module = "vim_dadbod_completion.blink"
+        },
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100
         }
       }
     },
