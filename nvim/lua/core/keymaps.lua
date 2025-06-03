@@ -2,7 +2,6 @@
 -- ###############
 -- # NORMAL MODE #
 -- ###############
-
 Key('n', '<C-n>', ":Dashboard<CR>", Opts("launch dashboard"))
 
 
@@ -177,3 +176,10 @@ Key('v', "<leader>x", ":lua<CR>", Opts("Execute selected lua lines"))
 -- #######
 
 Key('n', '_', '<cmd>Oil<CR>', Opts("Launch Oil"))
+
+
+-- ########
+-- # test #
+-- ########
+
+Key('n', '<space>pl', '<cmd>PlenaryBustedFile %<CR>', Opts("[PL]enary test"))
