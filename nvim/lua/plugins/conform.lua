@@ -5,11 +5,17 @@ return {
     conform.setup({
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { "prettier" },
-        html = { "prettier" },
-        php = { "easy-coding-standard" }
-      }
+        javascript = { "prettierd" },
+        html = { "prettierd" },
+        php = { "prettierd" }
+      },
+      log_level = vim.log.levels.DEBUG
     })
+    --conform.formatters.prettierd = {
+    --  prepend_args = {
+    --    "--bracket-same-line"
+    --  }
+    --}
     Key({ "n", "v" }, "<leader>mp", function()
       conform.format({
         lsp_fallback = true,
