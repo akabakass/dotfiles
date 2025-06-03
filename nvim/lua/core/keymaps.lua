@@ -160,6 +160,7 @@ Key('n', "<leader>vd", function() vim.diagnostic.open_float() end, Opts("[G]o to
 -- ##########
 
 Key("n", "<leader>dB", "<cmd>DBUIToggle<CR>", Opts("[DB]ui"))
+Key("n", "<leader>rq", "<plug>DBUI_ExecuteQuery<CR>", Opts("[DB]ui"))
 
 
 -- #############
