@@ -35,8 +35,7 @@ Opts('open [S]mall [T]erminal')
 -- # nvim-tree #
 -- #############
 
-Key("n", "<C-a>", ":NvimTreeToggle<CR>", Opts())
-Key("n", "<C-f>", ":NvimTreeFindFileToggle<CR>", Opts())
+Key("n", "<C-a>", ":NvimTreeFindFileToggle<CR>", Opts())
 
 -- #############
 -- # telescope #
