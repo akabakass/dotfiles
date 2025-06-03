@@ -176,4 +176,4 @@ Key('v', "<leader>x", ":lua<CR>", Opts("Execute selected lua lines"))
 -- # oil #
 -- #######
 
-Key('n', '-', '<cmd>Oil<CR>', Opts("Launch Oil"))
+Key('n', '_', '<cmd>Oil<CR>', Opts("Launch Oil"))
