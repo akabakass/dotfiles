@@ -6,16 +6,26 @@ return {
       ui = {
         border = "rounded"
       }
-    },
-    config = true
+    }
   },
   {
     'neovim/nvim-lspconfig',
-    config = function ()
+    config = function()
+      local lspconfig = require("lspconfig")
+      local blink_cmp_config = require("blink.cmp")
+      local capabilities = blink_cmp_config.get_lsp_capabilities()
+
+      local default_setup = lspconfig.util.default_config
+
+      default_setup.capabilities = vim.tbl_deep_extend(
+        "force",
+        default_setup.capabilities or {},
+        capabilities
+      )
     end
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
       "williamboman/mason.nvim",
       'neovim/nvim-lspconfig'
@@ -26,8 +36,18 @@ return {
         auto_install = true,
         automatic_enable = true
       })
-      vim.lsp.config.intelephense = {
-
+      vim.lsp.config["intelephense"] = {
+        settings = {
+          intelephense = {
+            licenceKey = "",
+            diagnostics = {
+              undefinedConstants = false
+            },
+            files = {
+              maxSize = 50000000
+            }
+          }
+        }
       }
       --mason_lsp.setup_handlers {
       --  -- The first entry (without a key) will be the default handler
