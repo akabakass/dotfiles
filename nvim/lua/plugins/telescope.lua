@@ -19,7 +19,8 @@ return {
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-p>"] = actions.preview_scrolling_up,
               ["<C-n>"] = actions.preview_scrolling_down,
-              ["<C-_>"] = actions.which_key
+              ["<C-_>"] = actions.which_key,
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
             }
           },
           layout_config = {
