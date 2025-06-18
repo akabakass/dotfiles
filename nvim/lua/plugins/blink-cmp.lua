@@ -84,7 +84,15 @@ return {
       providers = {
         lsp = {
           async = true,
-          timeout_ms = 500
+          timeout_ms = 500,
+          opts = {
+            trigger_charcters = {
+              '>',
+              ':',
+              '\\',
+              '.'
+            }
+          }
         },
         dadbod = {
           name = "Dadbod",
