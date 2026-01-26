@@ -2,58 +2,34 @@ return {
   'saghen/blink.cmp',
   version = "*",
   dependencies = {
-    "rafamadriz/friendly-snippets"
+    "rafamadriz/friendly-snippets",
+    -- AJOUT: Nécessaire pour ta config "draw" plus bas
+    { "xzbdmw/colorful-menu.nvim", config = true },
   },
   opts = {
     keymap = {
       preset = 'default',
-      ['<C-j>'] = {'select_next', 'fallback'},
-      ['<C-k>'] = {'select_prev', 'fallback'},
-      ['<Tab>'] = {'select_and_accept', 'fallback'},
-      --  ['<Esc>'] = {'hide', 'fallback'},
-      ['<C-n>'] = {'scroll_documentation_down', 'fallback'},
-      ['<C-p>'] = {'scroll_documentation_up', 'fallback'}
+      ['<C-j>'] = { 'select_next', 'fallback' },
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<Tab>'] = { 'select_and_accept', 'fallback' },
+      ['<C-n>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<C-p>'] = { 'scroll_documentation_up', 'fallback' }
     },
     completion = {
-      keyword = {
-        range = 'full'
-      },
+      keyword = { range = 'full' },
       trigger = {
         show_on_keyword = true,
         show_on_trigger_character = true,
-        show_on_insert_on_trigger_character = true
       },
-      documentation = {
-        auto_show = true
-      },
-      ghost_text = {
-        enabled = false
-      },
-      list = {
-        selection = {
-          preselect = true,
-          auto_insert = false
-        }
-      },
-      accept = {
-        dot_repeat = true,
-        create_undo_point = true,
-        auto_brackets = {
-          enabled = true,
-          kind_resolution = {
-            enabled = true
-          },
-          semantic_token_resolution = {
-            enabled = true,
-            timeout_ms = 400
-          }
-        }
-      },
+      documentation = { auto_show = true },
+      ghost_text = { enabled = false },
+
       menu = {
         draw = {
+          -- Utilisation de colorful-menu pour un rendu plus joli (VSCode like)
           columns = {
-            {"kind_icon", "label", gap = 1},
-            {"source_name"}
+            { "kind_icon", "label", gap = 1 },
+            { "source_name" }
           },
           components = {
             label = {
@@ -73,30 +49,20 @@ return {
       nerd_font_variant = 'mono'
     },
     sources = {
-      default = {
-        'lazydev',
-        'lsp',
-        'dadbod',
-        'path',
-        'snippets',
-        'buffer'
-      },
+      default = { 'lazydev', 'lsp', 'dadbod', 'path', 'snippets', 'buffer' },
       providers = {
         lsp = {
           async = true,
           timeout_ms = 500,
+          fallbacks = { "buffer" },
           opts = {
-            trigger_charcters = {
-              '>',
-              ':',
-              '\\',
-              '.'
-            }
+            trigger_characters = { '<', '>', '/', '"', ':', '.', ' '}
           }
         },
         dadbod = {
           name = "Dadbod",
-          module = "vim_dadbod_completion.blink"
+          module = "vim_dadbod_completion.blink",
+          score_offset = 100
         },
         lazydev = {
           name = "LazyDev",
@@ -105,29 +71,7 @@ return {
         }
       }
     },
-    fuzzy = {
-      implementation = "rust"
-    },
-    signature = {
-      enabled = true
-    },
-    cmdline = {
-      enabled = true,
-      keymap = {
-        ['<C-j>'] = {'select_next', 'fallback'},
-        ['<C-k>'] = {'select_prev', 'fallback'},
-        ['<Tab>'] = {'select_and_accept', 'fallback'},
-        ['<C-n>'] = {'scroll_documentation_down', 'fallback'},
-        ['<C-p>'] = {'scroll_documentation_up', 'fallback'}
-
-      },
-      completion = {
-        menu = {
-          auto_show = true
-        }
-      }
-    }
-
+    signature = { enabled = true },
   },
   opts_extend = { "sources.default" }
 }
