@@ -95,7 +95,7 @@ return {
             cmd = {
               "odoo-lsp"
             },
-            filetypeys = {
+            filetypes = {
               "python",
               "javascript",
               "xml"
