@@ -3,12 +3,12 @@ return {
   version = "*",
   dependencies = {
     "rafamadriz/friendly-snippets",
-    -- AJOUT: Nécessaire pour ta config "draw" plus bas
     { "xzbdmw/colorful-menu.nvim", config = true },
   },
   opts = {
     keymap = {
       preset = 'default',
+      ['<CR>'] = { 'fallback' },
       ['<C-j>'] = { 'select_next', 'fallback' },
       ['<C-k>'] = { 'select_prev', 'fallback' },
       ['<Tab>'] = { 'select_and_accept', 'fallback' },
@@ -50,8 +50,13 @@ return {
       nerd_font_variant = 'mono'
     },
     sources = {
-      default = { 'lazydev', 'lsp', 'dadbod', 'path', 'snippets', 'buffer' },
+      default = { 'snippets', 'lazydev', 'lsp', 'dadbod', 'path', 'snippets', 'buffer' },
       providers = {
+        snippets = {
+          name = "Snippets",
+          module = "blink.cmp.sources.snippets",
+          score_offset = 1000, -- Score énorme pour forcer la 1ère position
+        },
         lsp = {
           async = true,
           timeout_ms = 500,

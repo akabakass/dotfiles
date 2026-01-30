@@ -81,7 +81,12 @@ return {
               filetypes = { "xml", "xsd", "xsl", "xslt", "svg" },
               settings = {
                 xml = {
-                  server = { workDir = vim.fn.expand("~/.cache/lemminx") }
+                  server = {
+                    workDir = vim.fn.expand("~/.cache/lemminx")
+                  },
+                  validation = {
+                    noGrammar = "ignore",
+                  }
                 }
               }
             })
