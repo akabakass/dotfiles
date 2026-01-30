@@ -67,6 +67,32 @@ if telescope_b_status then
     end
   end
 
+  local search_odoo_grep = function()
+    telescope_b.live_grep({
+      prompt_title = "Grep Odoo Source (odoo_std)",
+      search_dirs = { "./odoo_std" }, -- Cible uniquement le dossier Odoo
+      -- follow est souvent géré par ripgrep sous-jacent, mais on s'assure de cibler le dossier
+    })
+  end
+
+  local search_odoo_files = function()
+    telescope_b.find_files({
+      prompt_title = "Find Odoo Files",
+      search_dirs = { "./odoo_std" },
+      follow = true,    -- Important : suit le lien symbolique
+      no_ignore = true, -- Important : cherche même si odoo_std est dans .gitignore
+      hidden = true
+    })
+  end
+
+  local search_odoo_xml = function()
+    telescope_b.live_grep({
+      prompt_title = "Grep Odoo XML Data",
+      search_dirs = { "./odoo_std" },
+      glob_pattern = "*.xml", -- Filtre uniquement les fichiers XML
+    })
+  end
+
   Key("n", "<leader>tt", telescope_b.resume, Opts("resume [TT]elescope"))
   Key("n", "<leader>ff", my_find_files, Opts("[F]ind [F]iles"))
   Key("n", "<leader>gl", telescope_b.live_grep, Opts("[G]rep [L]ive"))
@@ -80,6 +106,9 @@ if telescope_b_status then
   Key('n', "<leader>fy", telescope_b.registers, Opts("[F]ind [Y]anks"))
   Key('n', "<leader>fq", telescope_b.quickfix, Opts("[F]ind [Q]uickfix"))
   Key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", Opts("[F]ind [P]roject"))
+  Key("n", "<leader>os", search_odoo_grep, Opts("[O]doo [S]ource Grep"))
+  Key("n", "<leader>of", search_odoo_files, Opts("[O]doo [F]iles"))
+  Key("n", "<leader>ox", search_odoo_xml,   Opts("[O]doo [X]ML Grep"))
 end
 Key("n", "<leader>u", "<cmd>Telescope undo<CR>")
 -- ############
