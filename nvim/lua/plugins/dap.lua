@@ -46,6 +46,50 @@ return {
         port = 9001
       }
     }
+    dap.adapters.python = function(cb, config)
+      if config.request == 'attach' then
+        local port = (config.connect or config).port
+        local host = (config.connect or config).host or '127.0.0.1'
+        cb({
+          type = 'server',
+          port = assert(port, '`connect.port` is required for a python `attach` configuration'),
+          host = host,
+          options = { source_filetype = 'python' },
+        })
+      else
+        cb({
+          type = 'executable',
+          command = '/usr/bin/python3', -- Chemin explicite vers le python système
+          args = { '-m', 'debugpy.adapter' },
+          options = { source_filetype = 'python' },
+        })
+      end
+    end
+
+    dap.configurations.python = {
+      {
+        type = 'python',
+        request = 'launch',
+        name = "Odoo: Launch Server",
+
+        program = "/usr/bin/odoo",
+
+        args = {
+          "-c", "/etc/odoo/odoo.conf",
+          "--data-dir", "/home/jc/.local/share/Odoo-dev",
+          -- "-u", "web", -- décomenter pour forcer la recompilation des assets avec le changement de data-dir
+          -- "-u", "tubs_base", -- force reinstall in case of crash
+          "--db_user", "jc",
+          "--db_host", "",
+          "--dev=all",
+        },
+
+        pythonPath = '/usr/bin/python3',
+
+        console = "integratedTerminal",
+        justMyCode = false,
+      },
+    }
 
     dap.configurations.javascript = {
       {
