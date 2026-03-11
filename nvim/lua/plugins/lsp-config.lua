@@ -112,6 +112,15 @@ return {
 
       lspconfig.odoo_lsp.setup({
         capabilities = capabilities,
+        on_init = function(client)
+          -- Force la synchronisation complète AVANT l'initialisation du changetracking
+          -- 1 correspond à TextDocumentSyncKind.Full
+          if type(client.server_capabilities.textDocumentSync) == "table" then
+            client.server_capabilities.textDocumentSync.change = 1
+          else
+            client.server_capabilities.textDocumentSync = 1
+          end
+        end,
       })
     end
   }
