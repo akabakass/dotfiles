@@ -120,6 +120,11 @@ return {
           else
             client.server_capabilities.textDocumentSync = 1
           end
+          if client.server_capabilities.completionProvider then
+            local triggers = client.server_capabilities.completionProvider.triggerCharacters or {}
+            table.insert(triggers, ".")
+            client.server_capabilities.completionProvider.triggerCharacters = triggers
+          end
         end,
       })
     end
