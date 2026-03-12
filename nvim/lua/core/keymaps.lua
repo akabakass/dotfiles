@@ -71,7 +71,11 @@ if telescope_b_status then
     telescope_b.live_grep({
       prompt_title = "Grep Odoo Source (odoo_std)",
       search_dirs = { "./odoo_std" }, -- Cible uniquement le dossier Odoo
-      -- follow est souvent géré par ripgrep sous-jacent, mais on s'assure de cibler le dossier
+      additional_args = function ()
+        return {
+          "--glob", "!*.po"
+        }
+      end
     })
   end
 
