@@ -69,24 +69,19 @@ return {
     dap.configurations.python = {
       {
         type = 'python',
-        request = 'launch',
-        name = "Odoo: Launch Server",
-
-        program = "/usr/bin/odoo",
-
-        args = {
-          "-c", "/etc/odoo/odoo.conf",
-          "--data-dir", "/home/jc/.local/share/Odoo-dev",
-          -- "-u", "web", -- décomenter pour forcer la recompilation des assets avec le changement de data-dir
-          -- "-u", "tubs_base", -- force reinstall in case of crash
-          "--db_user", "jc",
-          "--db_host", "",
-          "--dev=all",
+        request = 'attach',
+        name = "Odoo: Attach Server",
+        connect = {
+          host = '127.0.0.1',
+          port = 5678
         },
-
-        pythonPath = '/usr/bin/python3',
-
-        console = "integratedTerminal",
+        mode = "remote",
+        pathMappings = {
+            {
+                localRoot = "${workspaceFolder}",
+                remoteRoot = "${workspaceFolder}"
+            }
+        },
         justMyCode = false,
       },
     }
