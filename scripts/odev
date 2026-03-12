@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "🛑 Arrêt du service Odoo système..."
+sudo systemctl stop odoo
+
+ODOO_BIN="/usr/bin/odoo"
+CONF_FILE="/etc/odoo/odoo.conf"
+DATA_DIR="/home/jc/.local/share/Odoo-dev"
+
+echo "🐛 Démarrage d'Odoo en mode DEBUG (Attach)..."
+echo "👉 En attente de connexion sur le port 5678..."
+echo "👉 Appuyez sur CTRL+C pour quitter et relancer le service normal."
+echo "👉 Data Dir : $DATA_DIR"
+
+/usr/bin/python3 -m debugpy --listen 0.0.0.0:5678 "$ODOO_BIN" -c "$CONF_FILE" --data-dir="$DATA_DIR" --db_user=jc --dev=all "$@"
+
+#ctrl+c relance le service
+echo ""
+echo "✅ Redémarrage du service Odoo système..."
+sudo systemctl start odoo
+sudo systemctl status odoo --no-pager
