@@ -312,3 +312,4 @@ exec --no-startup-id konsole -name Ssh
 exec --no-startup-id konsole -name Term
 exec --no-startup-id ~/.config/i3/reset_screens.sh
 exec --no-startup-id ~/.config/i3/notion_launcher.sh
+exec --no-startup-id yakuake
