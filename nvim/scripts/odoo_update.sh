@@ -1,36 +1,33 @@
 #!/bin/bash
+set -euo pipefail
 
-# Arguments envoyés par Neovim
 FILE_PATH=$1
 DB_NAME=$2
 
-# Chemins de votre installation (à ajuster si besoin)
-ODOO_BIN="/opt/odoo/odoo-bin"     # Chemin vers votre exécutable Odoo
-ODOO_CONF="/etc/odoo/odoo.conf"   # Chemin vers votre fichier de conf (odoo ou odoo-dev)
-ODOO_SERVICE="odoo-dev"               # Nom de votre service systemd (odoo ou odoo-dev)
+ODOO_BIN="/usr/bin/odoo"
+ODOO_CONF="/etc/odoo/odoo.conf"
+ODOO_SERVICE="odoo-dev"
+ODOO_LOG="/var/log/odoo/odoo-server.log"   # = logfile= de ta conf
 
-if [ -z "$DB_NAME" ]; then
-    echo "Erreur : Base de données non spécifiée."
-    exit 1
+[ -z "$DB_NAME" ] && { echo "Erreur : base non spécifiée."; exit 1; }
+
+MODULE_NAME=$(echo "$FILE_PATH" | awk -F'/' '{for(i=1;i<=NF;i++) if($i=="models"||$i=="views"||$i=="controllers"||$i=="data"||$i=="security"||$i=="wizard") print $(i-1)}' | head -n1)
+[ -z "$MODULE_NAME" ] && { echo "Erreur : module indéduisible depuis $FILE_PATH"; exit 1; }
+
+systemctl stop "$ODOO_SERVICE"
+
+# Marque le point de départ pour ne relire que CE run en cas d'échec
+mark=$(wc -l < "$ODOO_LOG" 2>/dev/null || echo 0)
+
+update_rc=0
+sudo -u odoo "$ODOO_BIN" -c "$ODOO_CONF" -d "$DB_NAME" \
+    -u "$MODULE_NAME" --stop-after-init || update_rc=$?
+
+systemctl start "$ODOO_SERVICE"
+
+# En cas d'échec : ressort uniquement les lignes ajoutées par ce run (le traceback)
+if [ "$update_rc" -ne 0 ]; then
+    tail -n +"$((mark + 1))" "$ODOO_LOG" | awk '/ ERROR | CRITICAL |Traceback \(most recent/{p=1} p'
 fi
 
-# Extraction intelligente du nom du module depuis le chemin du fichier courant
-MODULE_NAME=$(echo "$FILE_PATH" | awk -F'/' '{for(i=1;i<=NF;i++) if($i=="models" || $i=="views" || $i=="controllers") print $(i-1)}')
-
-if [ -z "$MODULE_NAME" ]; then
-    echo "Erreur : Impossible de déduire le module (êtes-vous bien dans models/, views/ ou controllers/ ?)"
-    exit 1
-fi
-
-echo "Mise à jour du module [$MODULE_NAME] sur la base [$DB_NAME]..."
-
-# 1. Mise en pause du service multi-tenant
-systemctl stop $ODOO_SERVICE
-
-# 2. Lancement du binaire Odoo uniquement pour faire la mise à jour sur la bonne base (-d)
-sudo -u odoo $ODOO_BIN -c $ODOO_CONF -d $DB_NAME -u $MODULE_NAME --stop-after-init
-
-# 3. Relance du service
-systemctl start $ODOO_SERVICE
-
-echo "Redémarrage du service terminé."
+exit "$update_rc"
