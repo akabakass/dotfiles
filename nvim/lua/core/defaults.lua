@@ -133,3 +133,48 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.fo:remove("r")
   end,
 })
+
+-- fix indentations jump when typing / on self closing tag
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "xml", "xhtml", "html" },
+  callback = function()
+    vim.opt_local.indentkeys:remove("/")
+  end,
+})
+
+-- clipboard : dans tmux, copie via OSC 52 (traverse SSH),
+-- collage depuis le presse-papier du client tmux (OSC 52 lecture), repli sur le dernier buffer tmux
+if vim.env.TMUX then
+  local osc52 = require("vim.ui.clipboard.osc52")
+
+  local function tmux_buffers()
+    local r = vim.system({ "tmux", "list-buffers", "-F", "#{buffer_name}" }, { text = true }):wait()
+    return r.code == 0 and r.stdout or ""
+  end
+
+  local function tmux_paste()
+    local before = tmux_buffers()
+    vim.system({ "tmux", "refresh-client", "-l" }):wait()
+    vim.wait(300, function() return tmux_buffers() ~= before end, 20)
+
+    local r = vim.system({ "tmux", "save-buffer", "-" }, { text = true }):wait()
+    if r.code ~= 0 or not r.stdout or r.stdout == "" then
+      return {}
+    end
+    local lines = vim.split(r.stdout, "\n", { plain = true })
+    if lines[#lines] == "" then
+      table.remove(lines)
+      return { lines, "V" }
+    end
+    return { lines, "v" }
+  end
+
+  vim.g.clipboard = {
+    name = "osc52+tmux",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = tmux_paste, ["*"] = tmux_paste },
+  }
+end
+
+-- always use system clipboard
+vim.opt.clipboard:append("unnamedplus")
