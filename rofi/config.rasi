@@ -5,7 +5,7 @@ configuration {
 	font: ""FiraCode Nerd Font" mono 10";
 /*	bw: 1;*/
 /*	fixed-num-lines: true;*/
-	terminal: "konsole";
+	terminal: "kitty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/

@@ -59,6 +59,9 @@ set $crust #11111b
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# stop screen going to sleep
+exec --no-startup-id xset -dpms
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status; pkill -RTMIN+10 i3blocks"
@@ -80,7 +83,7 @@ bindsym XF86MonBrightnessDown exec "brightnessctl s 10%-"
 floating_modifier $mod
 
 # start a terminal
-bindsym Control+$alt+t exec konsole
+bindsym Control+$alt+t exec kitty
 
 # kill focused window
 bindsym $mod+w kill
@@ -137,7 +140,7 @@ bindsym $mod+Return fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Ctrl+f floating toggle
@@ -214,6 +217,9 @@ bindsym $mod+p exec "~/.config/i3/styli.sh -s nasa"
 
 bindsym $mod+m exec "~/.config/i3/switch_mic.sh"
 bindsym Control+$mod+m exec "~/.config/i3/switch_audio_source.sh"
+
+bindsym Control+$mod+e exec "~/dotfiles/i3-laptop/RofiEmoji.sh"
+bindsym $mod+e exec "caja --no-desktop"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -307,9 +313,9 @@ exec --no-startup-id ~/.config/i3/change_background.sh
 exec --no-startup-id youtube-music-desktop-app
 exec --no-startup-id firefox
 exec --no-startup-id kdeconnect-sms
-exec --no-startup-id konsole -name Code -e tmux
-exec --no-startup-id konsole -name Ssh
-exec --no-startup-id konsole -name Term
+exec --no-startup-id kitty --name Code
+exec --no-startup-id kitty --name Ssh
+exec --no-startup-id kitty --name Term
 exec --no-startup-id ~/.config/i3/reset_screens.sh
-exec --no-startup-id ~/.config/i3/notion_launcher.sh
-exec --no-startup-id yakuake
+# exec --no-startup-id ~/.config/i3/notion_launcher.sh
+exec --no-startup-id yakuake lnav
