@@ -71,6 +71,7 @@ if telescope_b_status then
     telescope_b.live_grep({
       prompt_title = "Grep Odoo Source (odoo_std)",
       search_dirs = { "/var/www/odoo/odoo_std" }, -- Cible uniquement le dossier Odoo
+      exclude = { "__pycache__" },
       additional_args = function ()
         return {
           "--glob", "!*.po"
@@ -83,6 +84,7 @@ if telescope_b_status then
     telescope_b.find_files({
       prompt_title = "Find Odoo Files",
       search_dirs = { "/var/www/odoo/odoo_std" },
+      exclude = { "__pycache__" },
       follow = true,    -- Important : suit le lien symbolique
       no_ignore = true, -- Important : cherche même si odoo_std est dans .gitignore
       hidden = true
@@ -93,6 +95,7 @@ if telescope_b_status then
     telescope_b.live_grep({
       prompt_title = "Grep Odoo XML Data",
       search_dirs = { "/var/www/odoo/odoo_std" },
+      exclude = { "__pycache__" },
       glob_pattern = "*.xml", -- Filtre uniquement les fichiers XML
     })
   end
