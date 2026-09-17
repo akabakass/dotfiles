@@ -50,7 +50,7 @@ return {
       nerd_font_variant = 'mono'
     },
     sources = {
-      default = { 'snippets', 'lazydev', 'lsp', 'dadbod', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'lazydev', 'snippets', 'dadbod', 'path', 'snippets', 'buffer' },
       providers = {
         snippets = {
           name = "Snippets",
