@@ -122,3 +122,13 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=/home/jc/.npm-global/bin/browser-sync:$PATH
+
+export EDITOR=nvim
+
+function y() {
+	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
+}
