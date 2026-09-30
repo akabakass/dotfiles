@@ -4,117 +4,80 @@ return {
     build = ":MasonUpdate",
     opts = {
       ui = { border = "rounded" },
-      ensure_installed = {
-        "pyright",
-        "lemminx",
-        "ts_ls",
-        "html",
-        "intelephense"
-      }
     }
   },
   {
     'neovim/nvim-lspconfig',
     dependencies = { 'saghen/blink.cmp' },
-    config = function()
-    end
   },
   {
     "mason-org/mason-lspconfig.nvim",
     dependencies = {
       "williamboman/mason.nvim",
-      'neovim/nvim-lspconfig'
+      'neovim/nvim-lspconfig',
+      'saghen/blink.cmp',
     },
     config = function()
-      local mason_lsp = require("mason-lspconfig")
-      local lspconfig = require("lspconfig")
-      local configs = require("lspconfig.configs")
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      -- API 0.12 : vim.lsp.config() + vim.lsp.enable() remplacent les
+      -- handlers de mason-lspconfig, retires en v2 (ils etaient ignores
+      -- en silence, d'ou les settings pyright par defaut).
 
-      mason_lsp.setup({
-        auto_install = true,
-        ensure_installed = {
-          "pyright",
-          "lemminx",
-          "ts_ls",
-          "intelephense"
-        },
-        handlers = {
-          function(server_name)
-            lspconfig[server_name].setup({
-              capabilities = capabilities,
-            })
-          end,
-
-          ["pyright"] = function()
-            lspconfig.pyright.setup({
-              capabilities = capabilities,
-              settings = {
-                python = {
-                  analysis = {
-                    typeCheckingMode = "basic",
-                    autoSearchPaths = true,
-                    useLibraryCodeForTypes = true,
-                    diagnosticMode = "workspace",
-                  }
-                }
-              }
-            })
-          end,
-
-          ["intelephense"] = function()
-            lspconfig.intelephense.setup({
-              capabilities = capabilities,
-              settings = {
-                intelephense = {
-                  licenceKey = "",
-                  diagnostics = { undefinedConstants = false },
-                  files = { maxSize = 50000000 }
-                }
-              }
-            })
-          end,
-
-          ["lemminx"] = function()
-            lspconfig.lemminx.setup({
-              capabilities = capabilities,
-              filetypes = { "xml", "xsd", "xsl", "xslt", "svg" },
-              settings = {
-                xml = {
-                  server = {
-                    workDir = vim.fn.expand("~/.cache/lemminx")
-                  },
-                  validation = {
-                    noGrammar = "ignore",
-                  }
-                }
-              }
-            })
-          end,
-        }
+      -- '*' s'applique a TOUS les serveurs : les capabilities blink ne sont
+      -- plus a repeter serveur par serveur.
+      vim.lsp.config('*', {
+        capabilities = require('blink.cmp').get_lsp_capabilities(),
       })
-      if not configs.odoo_lsp then
-        configs.odoo_lsp = {
-          default_config = {
-            name = "odoo_lsp",
-            cmd = {
-              "odoo-lsp"
-            },
-            filetypes = {
-              "python",
-              "javascript",
-              "xml"
-            },
-            root_dir = lspconfig.util.root_pattern(".odoo_lsp.json", ".git")
+
+      vim.lsp.config('pyright', {
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              -- workspace : indexe tout le projet, pas seulement les
+              -- fichiers ouverts. Necessaire pour naviguer dans les addons.
+              diagnosticMode = "workspace",
+            }
           }
         }
-      end
+      })
 
-      lspconfig.odoo_lsp.setup({
-        capabilities = capabilities,
+      vim.lsp.config('intelephense', {
+        settings = {
+          intelephense = {
+            licenceKey = "",
+            diagnostics = { undefinedConstants = false },
+            files = { maxSize = 50000000 }
+          }
+        }
+      })
+
+      vim.lsp.config('lemminx', {
+        filetypes = { "xml", "xsd", "xsl", "xslt", "svg" },
+        settings = {
+          xml = {
+            server = { workDir = vim.fn.expand("~/.cache/lemminx") },
+            validation = { noGrammar = "ignore" },
+          }
+        }
+      })
+
+      -- odoo-lsp n'est pas fourni par mason : on le declare comme les
+      -- autres, root_markers remplace lspconfig.util.root_pattern.
+      vim.lsp.config('odoo_lsp', {
+        cmd = { "odoo-lsp" },
+        filetypes = { "python", "javascript", "xml" },
+        root_markers = { ".odoo_lsp.json", ".git" },
         on_init = function(client)
-          -- Force la synchronisation complète AVANT l'initialisation du changetracking
-          -- 1 correspond à TextDocumentSyncKind.Full
+          -- odoo-lsp annonce un diagnosticProvider (diagnostics "pull").
+          -- On retire la capability : nvim ne les demande plus du tout.
+          -- Arbitrage : odoo-lsp fournit la completion champs/modeles/xmlid,
+          -- pyright fournit les diagnostics Python. Ceux d'odoo-lsp sur les
+          -- appels ORM sont approximatifs (ex. __count de _read_group).
+          client.server_capabilities.diagnosticProvider = nil
+          -- Force la synchronisation complete AVANT l'initialisation du
+          -- changetracking. 1 = TextDocumentSyncKind.Full
           if type(client.server_capabilities.textDocumentSync) == "table" then
             client.server_capabilities.textDocumentSync.change = 1
           else
@@ -127,6 +90,18 @@ return {
           end
         end,
       })
+
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "pyright",
+          "lemminx",
+          "ts_ls",
+          "intelephense",
+        },
+      })
+
+      -- odoo-lsp n'est pas gere par mason : activation explicite.
+      vim.lsp.enable('odoo_lsp')
     end
   }
 }

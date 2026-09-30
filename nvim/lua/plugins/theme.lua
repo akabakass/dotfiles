@@ -23,7 +23,10 @@ return {
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
-  config = function()
+  config = function(_, opts)
+    -- lazy.nvim n'appelle pas setup() quand un config custom est defini :
+    -- sans cet appel, flavour, transparence et integrations sont ignorees
+    require("catppuccin").setup(opts)
     vim.cmd("colorscheme catppuccin")
   end,
   opts = {

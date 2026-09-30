@@ -12,7 +12,6 @@ return {
       ['<C-j>'] = { 'select_next', 'fallback' },
       ['<C-k>'] = { 'select_prev', 'fallback' },
       ['<Tab>'] = { 'select_and_accept', 'fallback' },
-      ['<CR>'] = { 'fallback' },
       ['<C-n>'] = { 'scroll_documentation_down', 'fallback' },
       ['<C-p>'] = { 'scroll_documentation_up', 'fallback' }
     },
@@ -50,12 +49,11 @@ return {
       nerd_font_variant = 'mono'
     },
     sources = {
-      default = { 'lsp', 'lazydev', 'snippets', 'dadbod', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'lazydev', 'dadbod', 'path', 'snippets', 'buffer' },
       providers = {
         snippets = {
           name = "Snippets",
           module = "blink.cmp.sources.snippets",
-          score_offset = 1000, -- Score énorme pour forcer la 1ère position
         },
         lsp = {
           async = true,
