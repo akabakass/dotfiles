@@ -35,8 +35,6 @@ return {
               typeCheckingMode = "basic",
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
-              -- workspace : indexe tout le projet, pas seulement les
-              -- fichiers ouverts. Necessaire pour naviguer dans les addons.
               diagnosticMode = "workspace",
             }
           }
