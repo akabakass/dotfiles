@@ -20,7 +20,8 @@ return {
               ["<C-p>"] = actions.preview_scrolling_up,
               ["<C-n>"] = actions.preview_scrolling_down,
               ["<C-_>"] = actions.which_key,
-              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+              ["<C-g>"] = actions.to_fuzzy_refine
             }
           },
           layout_config = {

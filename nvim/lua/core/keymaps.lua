@@ -67,36 +67,41 @@ if telescope_b_status then
     end
   end
 
+  -- Exclusions communes aux recherches Odoo (bruit : traductions, libs JS, bytecode)
+  local odoo_dir = "/var/www/odoo/odoo_std"
+  local odoo_rg_args = {
+    "--glob", "!**/i18n/**",
+    "--glob", "!**/static/lib/**",
+    "--glob", "!**/__pycache__/**",
+    "--glob", "!**/*.min.js",
+    "--glob", "!**/*.map",
+  }
+
   local search_odoo_grep = function()
     telescope_b.live_grep({
       prompt_title = "Grep Odoo Source (odoo_std)",
-      search_dirs = { "/var/www/odoo/odoo_std" }, -- Cible uniquement le dossier Odoo
-      exclude = { "__pycache__" },
-      additional_args = function ()
-        return {
-          "--glob", "!*.po"
-        }
-      end
+      search_dirs = { odoo_dir },
+      additional_args = odoo_rg_args,
     })
   end
 
   local search_odoo_files = function()
     telescope_b.find_files({
       prompt_title = "Find Odoo Files",
-      search_dirs = { "/var/www/odoo/odoo_std" },
-      exclude = { "__pycache__" },
-      follow = true,    -- Important : suit le lien symbolique
-      no_ignore = true, -- Important : cherche même si odoo_std est dans .gitignore
-      hidden = true
+      search_dirs = { odoo_dir },
+      follow = true,
+      no_ignore = true,
+      hidden = true,
+      additional_args = odoo_rg_args,
     })
   end
 
   local search_odoo_xml = function()
     telescope_b.live_grep({
       prompt_title = "Grep Odoo XML Data",
-      search_dirs = { "/var/www/odoo/odoo_std" },
-      exclude = { "__pycache__" },
-      glob_pattern = "*.xml", -- Filtre uniquement les fichiers XML
+      search_dirs = { odoo_dir },
+      glob_pattern = "*.xml",
+      additional_args = odoo_rg_args,
     })
   end
 
@@ -144,9 +149,10 @@ Key('x', 'm', ":lua require('tsht').nodes()<CR>", Opts("treehopper"))
 
 Key('n', '<F5>', function() require('dap').continue() end, Opts("Start debbuging"))
 Key('n', '<F6>', function()
-  require('dap').close()
+  -- terminateDebuggee=false : on se detache d'Odoo, on ne le tue pas.
+  require('dap').disconnect({ terminateDebuggee = false })
   require('dapui').close()
-end, Opts("Stop debugging"))
+end, Opts("Stop debugging (detach)"))
 Key('n', '<F2>', function() require('dap').step_over() end, Opts("Step over"))
 Key('n', '<F3>', function() require('dap').step_into() end, Opts("Step into"))
 Key('n', '<F4>', function() require('dap').step_out() end, Opts("Step out"))
@@ -173,6 +179,28 @@ Key('n', '<Leader>ds', function()
   local widgets = require('dap.ui.widgets')
   widgets.centered_float(widgets.scopes)
 end, Opts("[d]ap show [S]copes"))
+Key('n', '<Leader>dt', function()
+  require('dapui').toggle({ layout = 3 })
+end, Opts("[D]ap [T]hreads / breakpoints"))
+
+Key('n', '<Leader>dS', function()
+  -- float_element rend le MEME contenu que le panneau, mais en plein ecran :
+  -- pour lire un dict ou un contexte trop large pour la colonne de 60.
+  require('dapui').float_element("scopes", { enter = true, position = "center" })
+end, Opts("[D]ap [S]copes plein ecran"))
+
+Key('n', '<Leader>dW', function()
+  -- add() sans argument prend le mot sous le curseur : inutilisable pour une
+  -- expression Odoo du type self.mapped('default_code')
+  local expr = vim.fn.input('[DAP] watch > ')
+  if expr ~= '' then
+    require('dapui').elements.watches.add(expr)
+  end
+end, Opts("[D]ap [W]atch (expression saisie)"))
+
+Key('n', '<Leader>dV', function()
+  require('dapui').float_element("watches", { enter = true, position = "center" })
+end, Opts("[D]ap [V]atches plein ecran :)"))
 
 -- ############
 -- # Undotree #
