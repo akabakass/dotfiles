@@ -19,7 +19,7 @@ local function auto_build_odoo_module()
 
     -- 3. Lancement du build
     local out = {}
-    vim.fn.jobstart({"sudo", "/home/jc/.config/nvim/scripts/odoo_update.sh", filepath, detected_db}, {
+    vim.fn.jobstart({"sudo", "/home/jc/dotfiles/nvim/scripts/odoo_update.sh", filepath, detected_db}, {
         stdout_buffered = true,
         stderr_buffered = true,
         on_stdout = function(_, d) if d then vim.list_extend(out, d) end end,
