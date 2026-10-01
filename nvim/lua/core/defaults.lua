@@ -20,8 +20,6 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 -- -- reproduce indentation of previous line
 vim.opt.autoindent = true
--- -- try to be smart (increase indenting level after { for exemple)
-vim.opt.smartindent = true
 -- specific php indent to override vim weird default
 vim.g['PHP_default_indenting'] = 2
 -- -- show line number
@@ -78,7 +76,6 @@ vim.opt.cursorlineopt = "both"
 -- try to open help files in french first
 vim.opt.helplang = "fr,en"
 -- hide buffers instead of unloading them
-vim.opt.hidden = true
 -- show cmd modification live and in a preview window at the same time
 vim.opt.inccommand = "split"
 -- remove highlighting of search which stay on after
