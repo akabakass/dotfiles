@@ -90,23 +90,30 @@ DECISION=$(decide)
 MODE=$(echo "$DECISION" | cut -d' ' -f1)
 REASON=$(echo "$DECISION" | cut -d' ' -f2-)
 
-echo "[$MODULE_NAME] $MODE $REASON"
+# Les lignes prefixees ">>" sont le protocole avec Neovim : chacune devient
+# une notification qui remplace la precedente.
+echo ">> $MODULE_NAME : $MODE $REASON"
 
 mark=$(wc -l < "$ODOO_LOG" 2>/dev/null || echo 0)
 rc=0
 
 if [ "$MODE" = "update" ]; then
+    echo ">> arret du service"
     systemctl stop "$ODOO_SERVICE"
+    echo ">> mise a jour du module (-u $MODULE_NAME)"
     sudo -u odoo "$ODOO_BIN" -c "$ODOO_CONF" -d "$DB_NAME" \
         -u "$MODULE_NAME" --stop-after-init || rc=$?
+    echo ">> demarrage du service"
     systemctl start "$ODOO_SERVICE"
 else
+    echo ">> redemarrage du service"
     systemctl restart "$ODOO_SERVICE"
 fi
 
 # Type=simple : systemd rend la main des que le process est lance, mais Odoo
 # met encore ~1,5 s avant d'ecouter sur 8069. Sans cette attente, le script
 # annonce "OK" alors que le navigateur est encore hors ligne.
+echo ">> attente du port 8069"
 for _ in $(seq 1 120); do
     ss -lnt 2>/dev/null | grep -q ':8069 ' && break
     sleep 0.25
@@ -114,6 +121,7 @@ done
 
 # Le registre se charge a la PREMIERE requete, pas au demarrage : on la
 # declenche ici pour que la page soit servie immediatement.
+echo ">> chargement du registre"
 curl -s -o /dev/null --max-time 90 "http://127.0.0.1:8069/web/login" || true
 
 if [ "$rc" -ne 0 ]; then
