@@ -32,7 +32,7 @@ return {
       --   xml : un <record> ne cree pas de niveau (vues Odoo illisibles)
       --   php : etait deja desactive avant la migration
       local no_ts_indent = {
-        -- xml = true,
+        xml = true,
         -- php = true,
       }
 
@@ -41,9 +41,18 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         group = grp,
         callback = function(ev)
-          -- pcall : un filetype sans parser installe leverait une erreur
-          -- (ex. un .conf ouvert par hasard).
           pcall(vim.treesitter.start, ev.buf)
+
+          -- XmlIndentGet s'appuie sur synID(), que treesitter ne renseigne
+          -- pas : son calcul tombe alors dans la branche "non-xml tag
+          -- content" et recopie l'indentation precedente. start() desactive
+          -- la syntaxe regex, on la remet ici (apres, donc).
+          -- 'ON' et pas 'xml' : valeur speciale qui charge le script du
+          -- filetype courant (cf. doc de vim.treesitter.start).
+          -- Ne colore rien : les extmarks de treesitter sont prioritaires.
+          if ev.match == "xml" then
+            vim.bo[ev.buf].syntax = "ON"
+          end
 
           if not no_ts_indent[ev.match] then
             vim.bo[ev.buf].indentexpr =
