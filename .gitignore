@@ -3,3 +3,4 @@ packer_compiled.lua
 src/
 tmux/plugins/
 nvim/pendulum_log.csv
+nvim/lazy-lock.json
