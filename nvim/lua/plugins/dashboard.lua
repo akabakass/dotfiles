@@ -1,17 +1,5 @@
 local custom_center = {
   {
-    icon = "🖥️   ",
-    desc = "select project",
-    key = "p",
-    action = function()
-      require('telescope').extensions.projects.projects(
-        require('telescope.themes').get_dropdown({
-          hidden = true
-        })
-      )
-    end
-  },
-  {
     icon = '🔍   ',
     desc = 'Find file in ' .. vim.fn.substitute(vim.fn.getcwd(), '/home/jc', '~', ''),
     key = 'f',

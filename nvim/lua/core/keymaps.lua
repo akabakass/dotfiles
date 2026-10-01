@@ -117,7 +117,6 @@ if telescope_b_status then
   Key('n', "<leader>fd", telescope_b.lsp_definitions, Opts("[F]ind [D]efinitions"))
   Key('n', "<leader>fy", telescope_b.registers, Opts("[F]ind [Y]anks"))
   Key('n', "<leader>fq", telescope_b.quickfix, Opts("[F]ind [Q]uickfix"))
-  Key("n", "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects(require('telescope.themes').get_dropdown({hidden = true}))<CR>", Opts("[F]ind [P]roject"))
   Key("n", "<leader>os", search_odoo_grep, Opts("[O]doo [S]ource Grep"))
   Key("n", "<leader>of", search_odoo_files, Opts("[O]doo [F]iles"))
   Key("n", "<leader>ox", search_odoo_xml,   Opts("[O]doo [X]ML Grep"))
