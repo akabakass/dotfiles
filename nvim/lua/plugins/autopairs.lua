@@ -29,7 +29,13 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       -- Setup vide pour commencer, ça utilise les défauts qui marchent
-      require('nvim-ts-autotag').setup()
+      require('nvim-ts-autotag').setup({
+        -- La fermeture auto se cumule avec celle de lemminx sur les fichiers
+        -- Odoo : <field| donne <field /> au lieu de laisser saisir name=.
+        per_filetype = {
+          xml = { enable_close = false },
+        },
+      })
     end
   }
 }

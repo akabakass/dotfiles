@@ -57,6 +57,10 @@ return {
           xml = {
             server = { workDir = vim.fn.expand("~/.cache/lemminx") },
             validation = { noGrammar = "ignore" },
+            -- La fermeture auto se cumule avec autotag et empeche de saisir
+            -- les attributs : <field| donne <field></field> au lieu de
+            -- laisser le curseur apres le nom de balise.
+            completion = { autoCloseTags = false },
           }
         }
       })
@@ -95,6 +99,7 @@ return {
           "lemminx",
           "ts_ls",
           "intelephense",
+          "ruff"
         },
       })
 

@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
     config = function(_,opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -48,8 +49,10 @@ return {
         enable = true
       }
     },
-    config = function(_,opts)
-      require("nvim-treesitter.configs").setup(opts)
+    config = function()
+      -- matchup se configure par variables globales, pas par le setup de
+      -- nvim-treesitter. L'appel a configs.setup ici ecrasait le highlight
+      -- et l'indent configures dans le bloc treesitter.
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.matchup_matchparen_deferred = 1
     end
